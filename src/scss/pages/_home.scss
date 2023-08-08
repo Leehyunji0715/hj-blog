@@ -1,0 +1,64 @@
+.section-profile {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 2rem;
+
+    h1 {
+        font-size: 4rem;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+        font-weight: 500;
+        letter-spacing: .75px;
+    }
+
+    h3 {
+        font-size: 1.75rem;
+        font-weight: 500;
+        color: $color-grey-dark;
+    }
+}
+
+.profile-text {
+    position: relative;
+}
+
+.profile-text__guide {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: -12rem;
+    font-size: $default-font-size * 0.9;
+    color: $color-grey-dark;
+
+    svg {
+        margin-right: .5rem;
+    }
+}
+
+.airballoon-scroll-timeline {
+    position: relative;
+}
+
+.track {
+    position: absolute;
+	top: 0;
+    width: 100vw;
+	// width: 163.7rem;
+	transform: translateX(-50%);
+	will-change: transform;
+}
+
+.airballoon {
+    position: absolute;
+	left: 0;
+	top: 0;
+	width: 10rem;
+    offset-distance: 0;
+    offset-rotate: auto -90deg;
+    offset-path: path("M136.276 2C136.276 453.033 107.37 573.714 246.5 626C411.952 688.178 668.691 668.403 980.929 661C1174.49 661 1540.46 722.812 1552.49 753.5C1567.53 791.86 1564.12 948.502 1560.38 955.861C1523.82 1027.88 1088.5 1187 1088.5 1187C1088.5 1187 854.96 1229.27 662.5 1194.5C560.208 1176.02 124.995 1241.5 109.484 1272V1304.31C109.484 1325.62 157.052 1339.56 217.592 1325.62C293.268 1308.19 319.59 1303.35 315.83 1304.31C312.069 1305.28 460.6 1235.57 294.678 1229.27C128.756 1222.98 87.423 1227.52 47 1243.5C6.57701 1259.48 -0.260271 1305.14 3.50001 1340C7.26029 1374.86 4.69687 1408.47 47 1407.5C89.3031 1406.53 -15.0482 1600.82 94 1610.5C203.048 1620.18 280.107 1716.95 315.83 1715.5C344.408 1714.34 580 1768 702.5 1685.5L980.929 1590.5H1186L1324 1527.5L1602 1490C1709.5 1630.5 1518.88 1677.13 1489 1715.5C1313.01 1941.47 111.003 1778.97 64 1946C16.9965 2113.03 604.431 1807.33 652.375 1895.44C700.318 1983.55 816.064 2034.4 895.5 2016C959.049 2001.28 973.408 1979.68 980.929 1979.68");
+}
