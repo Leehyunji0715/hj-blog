@@ -1,0 +1,8 @@
+.profile {
+    position: relative;
+    width: 25rem;
+    height: 30rem;
+    &--round {
+        border-radius: 50%;
+    }
+}
