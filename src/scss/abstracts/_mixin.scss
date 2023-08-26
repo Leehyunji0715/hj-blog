@@ -1,0 +1,5 @@
+@mixin show-up-animation {
+    animation: show-up .7s ease-in-out;
+    animation-fill-mode: backwards;
+}
+  
