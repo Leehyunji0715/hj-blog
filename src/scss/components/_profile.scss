@@ -1,21 +1,9 @@
 .profile {
     position: relative;
-    width: 25rem;
-    height: 30rem;
+    width: 27rem;
+    height: 32rem;
     &--round {
         border-radius: 50%;
     }
-    animation: show-up .5s ease-in-out;
-    animation-fill-mode: backwards;
-}
-
-@keyframes show-up {
-    0% {
-        opacity: 0;
-        transform: translateY(1rem);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    @include show-up-animation;
 }

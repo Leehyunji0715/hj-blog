@@ -1,6 +1,6 @@
 .about {
-    padding: 1rem 0;
     margin: 0 auto;
+    margin: 0 5vw;
     font-size: $default-font-size - .2rem;
 
     @media only screen and (max-width: 37.5em) { 
@@ -9,11 +9,6 @@
 
     & > *:not(:last-child) {
         margin: 3rem 0;
-    }
-
-    &-heading {
-        font-size: 2rem;
-        margin-bottom: 2rem;
     }
 
     &--main {
@@ -83,12 +78,12 @@
             &-description {
                 white-space: pre-line;
                 letter-spacing: .5px;
-                padding: .5rem 0 .5rem 2.7rem;
+                padding: .9rem 2.7rem;
             }
         }
 
         ul {
-            list-style:decimal;
+            list-style: none;
         }
 
         li:not(:last-child) {

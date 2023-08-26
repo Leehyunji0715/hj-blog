@@ -17,9 +17,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <head>
+        <script dangerouslySetInnerHTML={{
+              __html: `
+                const theme = window.localStorage.getItem("theme") ?? "dark";
+                document.documentElement.setAttribute("data-theme", theme);
+                console.log(theme);
+              `,
+            }}></script>
+      </head>
+      <body data-theme='light' className={`${inter.className}`}>
         <Header/>
-        {children}
+        <main>
+          {children}
+        </main>
       </body>
     </html>
   )
