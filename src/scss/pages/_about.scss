@@ -1,34 +1,28 @@
 .about {
     padding: 1rem 0;
     margin: 0 auto;
-    max-width: 90%;
+    font-size: $default-font-size - .2rem;
 
     @media only screen and (max-width: 37.5em) { 
 
-    }; 
+    };
 
-    @media only screen and (max-width: 56.25em) {
+    & > *:not(:last-child) {
+        margin: 3rem 0;
+    }
 
-    };//900px
-    
-    @media only screen and (max-width: 75em) { 
-
-    };//1200px
-    
-    @media only screen and (min-width: 112.5em) { 
-        // width: 80vw;
-    };//1800
+    &-heading {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
 
     &--main {
-
-        &__heading {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-        }
-
         &__body {
             display: flex;
+            justify-content: center;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
 
             .profile {
                 flex-shrink: 0;
@@ -37,13 +31,8 @@
             ul {
                 flex-grow: 1;
                 list-style: none;
-                font-size: 1.3rem;
                 padding: 2rem 0;
             }
-
-            // li {
-            //     display: flex;
-            // };
 
             li:not(:last-child) {
                 margin-bottom: 1rem;
@@ -51,6 +40,7 @@
 
             li span {
                 display: inline-block;
+                letter-spacing: 0px;
             }
 
             li > span {
@@ -58,6 +48,51 @@
                 width: 6rem;
                 font-weight: bold;
             }
+
+            li * {
+                letter-spacing: 1px;
+            }
+
+            a,
+            a:link,
+            a:visited {
+                color: currentColor;
+                text-decoration: none;
+            }
+
+            a:hover {
+                color: $color-primary;
+                transition: color $default-transition-time;
+            }
+        }
+    }
+
+    &__skill {
+        ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+    }
+
+    &__career {
+        &-company {
+            display: flex;
+
+            &-description {
+                white-space: pre-line;
+                letter-spacing: .5px;
+                padding: .5rem 0 .5rem 2.7rem;
+            }
+        }
+
+        ul {
+            list-style:decimal;
+        }
+
+        li:not(:last-child) {
+            margin-bottom: .75rem;
         }
     }
 }
