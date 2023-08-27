@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
-import { GitHubIcon, MoonIcon } from "./icons";
+import { GitHubIcon, MoonIcon, SunIcon } from "./icons";
+import { useEffect, useState } from "react";
 
 const menu = [
     { label: 'Home', href: '/' },
-    { label: 'Projects', href: '/projects' },
+    { label: 'About', href: '/about' },
     { label: 'Blog', href: '/blog' },
-    { label: 'Contact Me', href: '/contact' }
+    { label: 'Study', href: '/study' },
 ];
 
 // const sideMenu = [
@@ -17,6 +18,22 @@ const menu = [
 
 export default function Header() {
     const pathname = usePathname();
+    const [theme, setTheme] = useState<string>("dark");
+
+    const handleDarkmode = () => {
+        setTheme(theme === 'light' ? 'dark' : 'light');
+    };
+
+    useEffect(() => {
+        setTheme(window?.localStorage.getItem('theme') ?? "dark");
+    }, []);
+
+    useEffect(() => {
+        if (theme) {
+            document.body.setAttribute("data-theme", theme);
+            window.localStorage.setItem('theme', theme);
+        }
+    }, [theme]);
 
     return (
         <header className="header">
@@ -32,13 +49,15 @@ export default function Header() {
                             </li>
                         </Link>
                     )) }
-                    <Link href='/'>
+                    <Link href={process.env.GITHUB_URL ?? ''} target="_blank">
                         <li className='header__nav-list-item'>
                             <GitHubIcon/>
                         </li>
                     </Link>
                     <li className='header__nav-list-item'>
-                        <MoonIcon/>
+                        <button onClick={handleDarkmode} className="thememode-btn">
+                            { theme === 'dark' ? <SunIcon/> : <MoonIcon/> }
+                        </button>
                     </li>
                     <li className='header__nav-list-item'>
                         ENG

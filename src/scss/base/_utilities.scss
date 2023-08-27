@@ -18,10 +18,32 @@
     align-items: center;
 }
 
-.mt-sm {
-    margin-top: .5rem;
+.mt-sm { margin-top: .5rem; }
+.mt-md { margin-top: 1rem; }
+
+.mb-sm { margin-bottom: .5rem; }
+.mb-md { margin-bottom: 1rem; }
+
+.ml-sm { margin-left: .5rem; }
+
+.object-cover {
+    object-fit: cover;
 }
 
-.mt-md {
-    margin-top: 1rem;
+.object-contain {
+    object-fit: contain;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.heading {
+    font-size: 2.3rem;
+    margin-bottom: 1.5rem;
+}
+
+.heading-md {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
 }

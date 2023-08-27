@@ -1,0 +1,11 @@
+.thememode-btn {
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-radius: 50%;
+
+    svg {
+        fill: var(--color-text);
+    }
+}

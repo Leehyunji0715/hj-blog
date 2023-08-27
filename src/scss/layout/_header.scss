@@ -1,14 +1,13 @@
 .header {
-    width: 90vw;
+    width: 100%;
     margin: 0 auto;
+    padding: 3rem 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    // border-bottom: 1px solid $color-grey-dark;
-    // box-shadow: 0 0 1px 0px rgba(0, 0, 0, 0.1);
 
     img {
-        width: 8rem;
+        width: 6rem;
     }
 
     &__nav {}
@@ -29,17 +28,21 @@
 
     &__nav-list-item {
         font-size: $default-font-size;
-        color: $color-black;
+        color: var(--color-text);
         text-decoration: none;
 
         &:hover {
             color: $color-primary;
-            fill: $color-primary;
+            transition: color $default-transition-time;
         }
 
         & svg {
             width: 3rem;
             height: 3rem;
+            &:hover {
+                fill: $color-primary;
+                transition: fill $default-transition-time;
+            }
         }
     }
     
