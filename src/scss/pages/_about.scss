@@ -1,4 +1,5 @@
 .about {
+<<<<<<< HEAD
     padding: 1rem 0;
     margin: 0 auto;
     max-width: 90%;
@@ -29,6 +30,27 @@
         &__body {
             display: flex;
             align-items: center;
+=======
+    margin: 0 auto;
+    margin: 0 5vw;
+    font-size: $default-font-size - .2rem;
+
+    @media only screen and (max-width: 37.5em) { 
+
+    };
+
+    & > *:not(:last-child) {
+        margin: 3rem 0;
+    }
+
+    &--main {
+        &__body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+>>>>>>> about
 
             .profile {
                 flex-shrink: 0;
@@ -37,6 +59,7 @@
             ul {
                 flex-grow: 1;
                 list-style: none;
+<<<<<<< HEAD
                 font-size: 1.3rem;
                 padding: 2rem 0;
             }
@@ -45,12 +68,21 @@
             //     display: flex;
             // };
 
+=======
+                padding: 2rem 0;
+            }
+
+>>>>>>> about
             li:not(:last-child) {
                 margin-bottom: 1rem;
             }
 
             li span {
                 display: inline-block;
+<<<<<<< HEAD
+=======
+                letter-spacing: 0px;
+>>>>>>> about
             }
 
             li > span {
@@ -58,6 +90,54 @@
                 width: 6rem;
                 font-weight: bold;
             }
+<<<<<<< HEAD
+=======
+
+            li * {
+                letter-spacing: 1px;
+            }
+
+            a,
+            a:link,
+            a:visited {
+                color: currentColor;
+                text-decoration: none;
+            }
+
+            a:hover {
+                color: $color-primary;
+                transition: color $default-transition-time;
+            }
+        }
+    }
+
+    &__skill {
+        ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+    }
+
+    &__career {
+        &-company {
+            display: flex;
+
+            &-description {
+                white-space: pre-line;
+                letter-spacing: .5px;
+                padding: .9rem 2.7rem;
+            }
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li:not(:last-child) {
+            margin-bottom: .75rem;
+>>>>>>> about
         }
     }
 }

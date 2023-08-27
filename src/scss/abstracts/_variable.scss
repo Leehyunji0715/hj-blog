@@ -1,18 +1,10 @@
 // COLORS
 $color-primary: #F27F1A;
 $color-primary-light: #FFBA7D;
-$color-primary-dark: #F57300;
 
-// $color-primary: #55c57a;
-// $color-primary-light: #7ed56f;
-// $color-primary-dark: #28b485;
+$color-secondary: #ffd644;
 
-// $color-secondary-light: #ffb900;
-// $color-secondary-dark: #ff7730;
-
-// $color-tertiary-light: #2998ff;
-// $color-tertiary-dark: #5643fa;
-
+$color-grey: #1f2028;
 $color-grey-light-1: #f7f7f7;
 $color-grey-light-2: #eee;
 
@@ -23,13 +15,37 @@ $color-grey-dark-3: #333;
 $color-white: #fff;
 $color-black: #000;
 
+body {
+    --color-text: #{$color-black};
+    --color-black: #000;
+    --color-white: #000;
+}
+
+body[data-theme="light"] {
+    color: $color-black;
+    background-color: $color-white;
+    --color-text: #{$color-black};
+    --color-secondary: #{$color-secondary};
+
+    --color-red: #ff4545;
+    --color-blue: #36a3ff;
+    --color-yellow: #a08600;
+}
+  
+body[data-theme="dark"] {
+    color: $color-white;
+    background-color: $color-grey;
+    --color-text: #{$color-white};
+    --color-secondary: #{$color-secondary};
+
+    --color-blue: #36a3ff;
+    --color-red: #ff4545;
+    --color-yellow: #ffd644;
+}
+
 
 // FONT
 $default-font-size: 1.6rem;
 
-
-// GRID
-// $grid-width: 114rem;
-// $gutter-vertical: 8rem;
-// $gutter-vertical-small: 6rem;
-// $gutter-horizontal: 6rem;
+// TRANSITION
+$default-transition-time: .1s;

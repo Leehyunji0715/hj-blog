@@ -12,7 +12,10 @@ html {
 
 body {
     box-sizing: border-box;
-    padding: 3rem;
+    transition: background-color 0.2s, color 0.2s;
+    margin: 0 auto;
+    width: 80vw;
+    max-width: 125rem;
 }
 
 ::selection {

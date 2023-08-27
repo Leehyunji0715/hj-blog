@@ -1,0 +1,24 @@
+.chip {
+    display: inline-flex;
+    align-items: center;
+    padding: .2rem .6rem;
+    border-radius: .5rem;
+    border: 2px solid var(--color-secondary);
+    background-color: var(--color-secondary);
+    font-size: $default-font-size;
+    height: 3rem;
+
+    svg {
+        font-size: 1.8rem;
+        margin-right: 5px;
+    }
+}
+
+
+
+body[data-theme="dark"] {
+    .chip {
+        border: 2px solid var(--color-secondary);
+        background-color: transparent;
+    }
+}

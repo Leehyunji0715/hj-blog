@@ -1,4 +1,6 @@
 @import './abstracts/variable';
+@import './abstracts/animation';
+@import './abstracts/mixin';
 
 @import './base/base';
 @import './base/utilities';
@@ -6,5 +8,12 @@
 @import './layout/header';
 
 @import './pages/home';
+@import './pages/about';
+@import './pages/blog';
+
+@import './components/button';
+@import './components/chip';
+@import './components/profile';
+
 
 @import './text.scss';

@@ -1,8 +1,17 @@
 .profile {
     position: relative;
+<<<<<<< HEAD
     width: 25rem;
     height: 30rem;
     &--round {
         border-radius: 50%;
     }
+=======
+    width: 27rem;
+    height: 32rem;
+    &--round {
+        border-radius: 50%;
+    }
+    @include show-up-animation;
+>>>>>>> about
 }
