@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Header from '@/components/Header';
+import QueryClientContext from '@/context/QueryClientContext';
 import '../scss/main.scss';
 
 const inter = Inter({ subsets: ['latin'] })
@@ -29,7 +30,9 @@ export default function RootLayout({
       <body data-theme='light' className={`${inter.className}`}>
         <Header/>
         <main>
-          {children}
+          <QueryClientContext>
+            {children}
+          </QueryClientContext>
         </main>
       </body>
     </html>
