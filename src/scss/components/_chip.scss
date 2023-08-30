@@ -2,24 +2,13 @@
     display: inline-flex;
     align-items: center;
     padding: .2rem .6rem;
-    // color: $color-white;
     border-radius: .5rem;
     border: 2px solid var(--color-primary);
-    // background-color: var(--color-primary);
     font-size: $default-font-size;
     height: 3rem;
 
     svg {
         font-size: 1.8rem;
         margin-right: 5px;
-    }
-}
-
-
-
-body[data-theme="dark"] {
-    .chip {
-        // border: 2px solid var(--color-primary);
-        // background-color: transparent;
     }
 }
