@@ -25,6 +25,7 @@ body[data-theme="light"] {
     color: $color-black;
     background-color: $color-white;
     --color-text: #{$color-black};
+    --color-primary: #{$color-primary};
     --color-secondary: #{$color-secondary};
 
     --color-red: #ff4545;
@@ -36,6 +37,7 @@ body[data-theme="dark"] {
     color: $color-white;
     background-color: $color-grey;
     --color-text: #{$color-white};
+    --color-primary: #{$color-primary};
     --color-secondary: #{$color-secondary};
 
     --color-blue: #36a3ff;
