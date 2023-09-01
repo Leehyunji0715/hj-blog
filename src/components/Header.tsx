@@ -9,12 +9,7 @@ const menu = [
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about' },
     { label: 'Blog', href: '/blog' },
-    { label: 'Study', href: '/study' },
 ];
-
-// const sideMenu = [
-//     { element:  }
-// ];
 
 export default function Header() {
     const pathname = usePathname();

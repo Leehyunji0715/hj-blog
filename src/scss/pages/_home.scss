@@ -1,14 +1,85 @@
 .home {
-    &__skill {
+    &__skill, 
+    &__certification {
         ul {
             list-style: none;
             display: flex;
+            flex-wrap: wrap;
             gap: 1rem;
         }
     }
 
+    &__certification ul {
+        justify-content: end;
+    }
+
     .section-box {
-        margin-bottom: 5rem;
+        margin-bottom: 4rem;
+    }
+
+    &__career {
+        ul {
+            list-style: none;
+            font-weight: 700;
+        }
+
+        li {
+            margin-bottom: 1.5rem;
+        }
+
+        &-company-box {
+            margin-bottom: .4rem;
+        }
+
+        &-company {
+            font-size: $default-font-size + .5rem;
+            letter-spacing: 1px;
+            color: darken($color-primary, 5%);
+            font-weight: 700;
+        }
+
+        &-period {
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-left: 1rem;
+        }
+
+        &-work {
+            font-size: 1.3rem;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+    }
+
+    &__project {
+        display: flex;
+        flex-direction: column;
+        margin-top: 3rem;
+
+        &-item {
+            display: flex;
+            gap: 2rem;
+            padding: 2rem;
+            border-radius: 1rem;
+            background-color: var(--bg-secondary);
+
+            &:not(:last-child) {
+                margin-bottom: 2rem;
+            }
+            
+            &-img {
+                width: 40%;
+                object-fit: contain;
+            }
+
+            &-description {
+                text-align: left;
+                letter-spacing: 1px;
+                width: 60%;
+                padding: 1rem 0 1rem 1rem;
+            }
+        }
     }
 }
 
@@ -35,7 +106,7 @@
     h3 {
         font-size: 1.75rem;
         font-weight: 500;
-        color: $color-grey-dark;
+        color: var(--text-secondary);
     }
 }
 

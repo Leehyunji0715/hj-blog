@@ -1,7 +1,7 @@
 type Props = {
     title: string;
     children: React.ReactNode;
-    direction?: "left" | "right";
+    direction?: "left" | "right" | "center";
     className?: string;
 };
 

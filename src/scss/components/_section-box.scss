@@ -1,7 +1,11 @@
+
 .section-box {
+    $box-padding: 2rem;
+    $border-width: 3px;
+
     position: relative;
-    border-left: 3px solid var(--color-text);
-    padding: 2rem;
+    border-left: $border-width solid var(--color-text);
+    padding: $box-padding;
     font-size: $default-font-size;
 
     h1 {
@@ -14,10 +18,20 @@
     &[data-direction="right"] {
         text-align: right;
         border-left: none;
-        border-right: 3px solid var(--color-text);
+        border-right: $border-width solid var(--color-text);
         
         h1 {
             transform: translate(-4rem, -5rem);
+        }
+    }
+
+    &[data-direction="center"] {
+        padding: 0;
+        text-align: center;
+        border: none;
+        
+        h1 {
+            transform: translate(-$box-padding, -5rem);
         }
     }
 }

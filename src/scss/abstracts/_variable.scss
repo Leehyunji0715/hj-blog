@@ -1,8 +1,8 @@
 // COLORS
 $color-primary: #F27F1A;
-$color-primary-light: #FFBA7D;
+$color-primary-light: light($color-primary, 10%);
+$color-primary-dark: darken($color-primary, 10%);
 
-$color-secondary: #ffd644;
 
 $color-grey: #1f2028;
 $color-grey-light-1: #f7f7f7;
@@ -26,11 +26,11 @@ body[data-theme="light"] {
     background-color: $color-white;
     --color-text: #{$color-black};
     --color-primary: #{$color-primary};
-    --color-secondary: #{$color-secondary};
-
     --color-red: #ff4545;
     --color-blue: #36a3ff;
     --color-yellow: #a08600;
+    --bg-secondary: #f7f7f7;
+    --text-secondary: #535661;
 }
   
 body[data-theme="dark"] {
@@ -38,11 +38,11 @@ body[data-theme="dark"] {
     background-color: $color-grey;
     --color-text: #{$color-white};
     --color-primary: #{$color-primary};
-    --color-secondary: #{$color-secondary};
-
     --color-blue: #36a3ff;
     --color-red: #ff4545;
     --color-yellow: #ffd644;
+    --bg-secondary: #2e3039;
+    --text-secondary: #a9adc1;
 }
 
 
