@@ -60,16 +60,17 @@
         &-item {
             display: flex;
             gap: 2rem;
-            padding: 2rem;
+            padding: 4rem 2.5rem;
             border-radius: 1rem;
             background-color: var(--bg-secondary);
 
             &:not(:last-child) {
-                margin-bottom: 2rem;
+                margin-bottom: 2.5rem;
             }
             
             &-img {
                 width: 40%;
+                // max-width: 30rem;
                 object-fit: contain;
             }
 
