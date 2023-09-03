@@ -1,20 +1,15 @@
-'use client';
+import GridPostList from "@/components/GridPostList";
+import { getAllPosts } from "@/service/posts";
 
-import { useQuery } from '@tanstack/react-query'
+export default async function BlogPage() {
+    const posts = await getAllPosts();
+    const categories = ['All'].concat(Array.from(new Set(posts.map(post => post.category))));// [...new Set(posts.map(post => post.category))];
 
-export default function BlogPage() {
-    const { isLoading, error, data } = useQuery({
-        queryKey: ['/api/posts'],
-        queryFn: () =>
-          fetch('/api/posts').then(
-            (res) => res.json(),
-          ),
-      }) 
     return <div className="blog">
         블로그
-        <ul>카테고리</ul>
+        <ul>{categories.map(category => <span style={{ marginRight: '1rem' }}>{category}</span>)}</ul>
         <section>
-            목차
+            <GridPostList posts={posts}/>
         </section>
     </div>;
 }
