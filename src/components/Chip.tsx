@@ -1,15 +1,23 @@
 type Props = {
     text: string;
-    // background?: string;
+    size?: 'normal' | 'small';
+    round?: boolean;
+    highlight?: boolean;
+    fill?: boolean;
     icon?: React.ReactNode;
 };
 
-export default function Chip({text, icon}: Props) {
-    return <div className="chip">
-        {/* <span className="chip-icon">
+export default function Chip({text, icon, size='normal', round=false, highlight = true, fill=false}: Props) {
+    return (
+        <div 
+            data-highlight={highlight} 
+            data-round={round} 
+            data-size={size} 
+            data-fill={fill} 
+            className="chip"
+        >
             {icon}
-        </span> */}
-        {icon}
-        {text}
-    </div>
+            {text}
+        </div>
+    )
 }

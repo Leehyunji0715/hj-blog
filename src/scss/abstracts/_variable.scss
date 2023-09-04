@@ -30,7 +30,9 @@ body[data-theme="light"] {
     --color-blue: #36a3ff;
     --color-yellow: #a08600;
     --bg-secondary: #f7f7f7;
+    --bg-inverse: #{$color-black};
     --text-secondary: #535661;
+    --text-inverse: #{$color-white};
 }
   
 body[data-theme="dark"] {
@@ -42,7 +44,9 @@ body[data-theme="dark"] {
     --color-red: #ff4545;
     --color-yellow: #ffd644;
     --bg-secondary: #2e3039;
+    --bg-inverse: #{$color-white};
     --text-secondary: #a9adc1;
+    --text-inverse: #{$color-black};
 }
 
 

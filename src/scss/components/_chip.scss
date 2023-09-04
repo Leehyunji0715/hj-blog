@@ -2,13 +2,36 @@
     display: inline-flex;
     align-items: center;
     padding: .2rem .6rem;
-    border-radius: .5rem;
-    border: 2px solid var(--color-primary);
     font-size: $default-font-size;
     height: 3rem;
+    border: 2px solid transparent;
+    border-radius: .5rem;
+    transition: border .1s, color .1s, background-color .1s;
 
     svg {
         font-size: 1.8rem;
         margin-right: 5px;
     }
+}
+
+.chip[data-size='small'] {
+    font-size: $default-font-size - .2rem;
+}
+
+.chip[data-highlight=true] {
+    border: 2px solid var(--color-primary);
+}
+
+.chip[data-highlight=false]:hover {
+    border: 2px solid var(--color-primary);
+}
+
+.chip[data-round=true] {
+    border-radius: 2rem;
+    padding: .2rem 1rem;
+}
+
+.chip[data-fill=true] {
+    color: var(--text-inverse);
+    background-color: var(--color-primary);
 }
