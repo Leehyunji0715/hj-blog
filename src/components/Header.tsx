@@ -43,7 +43,7 @@ export default function Header() {
                             </li>
                         </Link>
                     )) }
-                    <Link href={process.env.GITHUB_URL ?? ''} target="_blank">
+                    <Link href={'https://github.com/Leehyunji0715'} target="_blank">
                         <li className='header__nav-list-item'>
                             <GitHubIcon/>
                         </li>

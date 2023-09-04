@@ -1,0 +1,19 @@
+.blog {
+    font-size: $default-font-size;
+}
+
+ul.blog-category {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-bottom: 2rem;
+    font-weight: 450;
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+
+    li {
+        cursor: pointer;
+    }
+}
