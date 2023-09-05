@@ -6,7 +6,7 @@
     height: 3rem;
     border: 2px solid transparent;
     border-radius: .5rem;
-    transition: border .1s, color .1s, background-color .1s;
+    transition: all .2s;
 
     svg {
         font-size: 1.8rem;
@@ -16,6 +16,12 @@
 
 .chip[data-size='small'] {
     font-size: $default-font-size - .2rem;
+}
+
+.chip[data-size='xSmall'] {
+    height: 2rem;
+    font-size: $default-font-size - .7rem;
+    font-weight: 500;
 }
 
 .chip[data-highlight=true] {
@@ -31,7 +37,12 @@
     padding: .2rem 1rem;
 }
 
+.chip[data-base-bg=true] {
+    background-color: var(--bg-secondary);
+}
+
 .chip[data-fill=true] {
+    font-weight: 500;
     color: var(--text-inverse);
     background-color: var(--color-primary);
 }
