@@ -34,6 +34,9 @@ export default function RootLayout({
             {children}
           </SWRConfigContext>
         </main>
+        <footer>
+          All rights reserved &copy; Hyunji, Lee {new Date().getFullYear()}
+        </footer>
       </body>
     </html>
   )
