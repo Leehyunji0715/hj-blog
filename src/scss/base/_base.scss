@@ -13,9 +13,9 @@ html {
 body {
     box-sizing: border-box;
     transition: background-color 0.2s, color 0.2s;
-    margin: 0 auto;
-    width: 80vw;
-    max-width: 125rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 ::selection {

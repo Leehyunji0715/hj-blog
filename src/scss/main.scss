@@ -6,11 +6,15 @@
 @import './base/utilities';
 
 @import './layout/header';
+@import './layout/main';
+@import './layout/footer';
+@import './layout/grid-list';
 
 @import './pages/home';
 @import './pages/blog';
 
 @import './components/button';
+@import './components/card';
 @import './components/chip';
 @import './components/profile';
 @import './components/section-box';
