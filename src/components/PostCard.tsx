@@ -1,5 +1,7 @@
 import { Post } from "@prisma/client"
 import Image from "next/image";
+import { CalendarIcon } from "./icons";
+import Chip from "./Chip";
 
 type Props = {
     post: Post;
@@ -16,9 +18,14 @@ export default function PostCard({ post }: Props) {
             className="card-img"
         />
         <div className="card-info">
-            <time>{post.createdAt.toLocaleDateString()}</time>
-            <h3>{post.title}</h3>
-            <span>{post.category}</span>
+            <h3 className="card-info__title">{post.title}</h3>
+            <div className="card-info__meta">
+                <Chip text={`# ${post.category}`} size="xSmall" round/>
+                <time>
+                    <CalendarIcon/>
+                    {new Date(post.createdAt).toLocaleDateString()}
+                </time>
+            </div>
         </div>
     </div>
 }
