@@ -1,6 +1,6 @@
 type Props = {
     text: string;
-    size?: 'normal' | 'small' | 'xSmall';
+    size?: 'normal' | 'small';
     round?: boolean;
     highlight?: boolean;
     fill?: boolean;

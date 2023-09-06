@@ -33,6 +33,7 @@ body[data-theme="light"] {
     --bg-inverse: #{$color-black};
     --text-secondary: #535661;
     --text-inverse: #{$color-white};
+    --border-secondary: #e6e9ee;
 }
   
 body[data-theme="dark"] {
@@ -47,6 +48,7 @@ body[data-theme="dark"] {
     --bg-inverse: #{$color-white};
     --text-secondary: #a9adc1;
     --text-inverse: #{$color-black};
+    --border-secondary: #4b4c53;
 }
 
 
