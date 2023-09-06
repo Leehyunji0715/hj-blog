@@ -1,34 +1,20 @@
 'use client';
-import { useState } from 'react';
-import { Post } from "@prisma/client";
+import useSWR from 'swr';
 import GridPostList from './GridPostList';
-import Chip from './Chip';
-
+import { Category } from '@/model/Category';
 
 type Props = {
-    posts: Post[];
-    categories: string[];
-};
+    pageNum: number;
+    category: Category;
+}
 
-const ALL = 'All';
-
-export default function FilterablePosts({ posts, categories }: Props) {
-    const [selected, setSelected] = useState(ALL);
-
+export default function FilterablePosts({ pageNum=1, category }: Props) {
+    const {data, isLoading} = useSWR(`/api/posts/${category}?page=${pageNum}`);
+    const posts = data;
+    
     return (
-        <div>
-            <ul className="blog-category">
-                {categories.map(category => <li onClick={() => setSelected(category)}>
-                    <Chip 
-                        text={category} 
-                        highlight={category === selected} 
-                        fill={category === selected}
-                        round 
-                        size='small'
-                    />
-                </li>)}
-            </ul>
-            <GridPostList posts={posts}/>
-        </div>
+        <>
+            { isLoading ? <span>loading</span> : <GridPostList posts={posts ?? []}/> }
+        </>
     )
 }
