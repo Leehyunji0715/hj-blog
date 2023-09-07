@@ -4,7 +4,7 @@ type Props = {
     children: React.ReactNode;
 }
 
-export default function BlogLayout({children}: Props) {
+export default async function BlogLayout({children}: Props) {
     return (
         <>
             <CategoryChipList/>

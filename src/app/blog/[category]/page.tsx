@@ -1,7 +1,7 @@
-import FilterablePosts from "@/components/FilterablePosts";
-import Paginator from "@/components/Paginator";
+import GridPostList from "@/components/GridPostList";
+import PostPaginator from "@/components/PostPaginator";
 import { Category } from "@/model/Category";
-import { postCount } from "@/service/posts";
+import { getPosts, postCount } from "@/service/posts";
 
 type Props = {
     params: { category: Category }
@@ -10,12 +10,12 @@ type Props = {
 
 export default async function BlogPageByCategory({ params: {category}, searchParams: {page} }: Props) {
     const countInfo = await postCount();
+    const posts = await getPosts(page, category === 'all' ? undefined : category);
     const curCount = category === 'all' ? 
         countInfo.reduce((acc, cur) => acc + cur._count, 0) 
         : countInfo.find(info => info.category === category)?._count ?? 0;
-    
     return <>
-        <FilterablePosts category={category} pageNum={page}/>
-        <Paginator unit={12} total={curCount}/>
+        <GridPostList posts={posts ?? []}/>
+        <PostPaginator total={curCount}/>
     </>;
 }
