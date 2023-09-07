@@ -18,6 +18,7 @@ export default function PostPaginator({ total }: Props) {
     const curPageNum = parseInt(useSearchParams().get('page') ?? '');
     const rangeMin = 1;
     const rangeMax = Math.ceil(total / UNIT);
+    console.log("rangeMax", rangeMax);
     
     if (curPageNum < rangeMin || curPageNum > rangeMax) {
         redirect(`${path}?page=1`);
@@ -64,11 +65,14 @@ export default function PostPaginator({ total }: Props) {
                 )
             })}
             { curPageNum < rangeMax - 2 && <PaginatorItem item='...'/> }
-            <PaginatorItem 
-                item={rangeMax} 
-                onClick={() => movePage(rangeMax)}
-                isSelected={rangeMax === curPageNum}
-            />
+            {
+                rangeMax > 1 &&
+                <PaginatorItem 
+                    item={rangeMax} 
+                    onClick={() => movePage(rangeMax)}
+                    isSelected={rangeMax === curPageNum}
+                />
+            }
             <PaginatorItem 
                 item={<RightIcon/>} 
                 onClick={() => movePage(curPageNum + 1)}
