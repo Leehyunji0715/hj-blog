@@ -1,0 +1,45 @@
+.pagination {
+    margin: 0 auto;
+    padding: 1rem;
+    width: 50vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 0;
+
+    &-item {
+        cursor: pointer;
+        font-size: $default-font-size + .2rem;
+        width: 3.5rem;
+        height: 3.5rem;
+        border: none;
+        border-radius: 50%;
+        color: var(--color-text);
+        font-weight: 500;
+        background-color: var(--bg-primary);
+        background-position: center;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: var(--bg-secondary);
+        }
+
+        &:active {
+            background-color: var(--bg-primary-effect);
+            background-size: 100%;
+            transition: background-color 0s;
+        }
+
+        &:disabled {
+            opacity: 0.3;
+            pointer-events: none;
+            background-color: transparent;
+        }
+    }
+
+    &-item--selected {
+        pointer-events: none;
+        color: var(--text-inverse);
+        background-color: $color-primary;
+    }
+}
