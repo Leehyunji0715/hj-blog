@@ -29,6 +29,7 @@ body[data-theme="light"] {
     --color-red: #ff4545;
     --color-blue: #36a3ff;
     --color-yellow: #a08600;
+    --bg-primary: #{$color-white};
     --bg-secondary: #f7f7f7;
     --bg-inverse: #{$color-black};
     --text-secondary: #535661;
@@ -44,6 +45,7 @@ body[data-theme="dark"] {
     --color-blue: #36a3ff;
     --color-red: #ff4545;
     --color-yellow: #ffd644;
+    --bg-primary: #{$color-grey};
     --bg-secondary: #2e3039;
     --bg-inverse: #{$color-white};
     --text-secondary: #a9adc1;
