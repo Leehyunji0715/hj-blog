@@ -22,7 +22,7 @@ export async function getPosts(pageNo: number = 0, category?: $Enums.Category): 
         delete where.category;
     }
     return await prisma.post.findMany({
-        skip: pageNo * size,
+        skip: (pageNo - 1) * size,
         take: size,
         where: where,
         orderBy: {
@@ -46,6 +46,19 @@ export async function addPost() {
           category: 'GENERAL',
           published: true
         }
+    })
+    .catch(async (e) => {
+        await prisma.$disconnect();
+        process.exit(1);
+    })
+    .finally(async () => {
+        await prisma.$disconnect();
+    });
+}
+
+export async function getPost(id: number): Promise<Post | null> {
+    return await prisma.post.findFirst({
+        where: { id: id }
     })
     .catch(async (e) => {
         await prisma.$disconnect();

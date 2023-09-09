@@ -1,0 +1,34 @@
+.post {
+    position: relative;
+    margin: 0 8vw;
+
+    $inner-margin: 3vw;
+    &__header {
+        margin-bottom: 3rem;
+
+        h1, time {
+            margin: 0 $inner-margin;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 500;
+            line-height: 1.25;
+        }
+
+        time {
+            display: block;
+            color: var(--text-secondary);
+            font-size: $default-font-size - .2rem;
+            margin-top: .5rem;
+            margin-bottom: 4rem;
+        }
+        
+        img {
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: .5rem;
+        }
+    }
+}
