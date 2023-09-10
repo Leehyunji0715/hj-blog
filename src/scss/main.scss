@@ -12,14 +12,13 @@
 
 @import './pages/home';
 @import './pages/blog';
+@import './pages/post';
 
 @import './components/button';
 @import './components/card';
 @import './components/chip';
-@import './components/pagination-bar';
+@import './components/paginator';
 @import './components/profile';
 @import './components/section-box';
 @import './components/tag';
-
-
-@import './text.scss';
+@import './components/markdown';

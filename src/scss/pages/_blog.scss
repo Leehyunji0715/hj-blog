@@ -15,5 +15,11 @@ ul.blog-category {
 
     li {
         cursor: pointer;
+        
+        a,
+        a:link,
+        a:visited {
+            color: var(--color-text);
+        }
     }
 }

@@ -28,7 +28,21 @@
     }
 
     &-ul {
-
+        list-style: none;
+        li {
+            display: flex;
+            align-items: center;
+        }
+        li:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+    }
+    
+    input[type="checkbox"] {
+        width: 2rem;
+        height: 2rem;
+        accent-color: $color-primary;
+        margin-right: 1rem;
     }
 
     blockquote {
@@ -57,7 +71,7 @@
     img {
         width: 100%;
         margin-bottom: $gap;
-        // object-fit: cover;
+        object-fit: fill;
     }
 
     code {
