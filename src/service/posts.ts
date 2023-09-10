@@ -38,12 +38,15 @@ export async function getPosts(pageNo: number = 0, category?: $Enums.Category): 
     });
 }
 
-export async function addPost() {
+export async function addPost({ title, content, category, image }: 
+    { title: string, content: string, category: $Enums.Category, image?: string }
+) {
     return await prisma.post.create({
         data: {
-          title: 'General 6',
-          content: '# Heading level 1',
-          category: 'GENERAL',
+          title: title,
+          content: content,
+          category: category,
+          image: image ?? '',
           published: true
         }
     })

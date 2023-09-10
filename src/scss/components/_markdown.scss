@@ -5,17 +5,23 @@
     font-size: $default-font-size;
     margin: 0 3vw;
 
-    &-h1,&-h2 {
+    &-h1, &-h2, &-h3 {
         color: var(--color-text);
     }
 
     &-h1 {
-        font-size: $default-font-size + .8rem;
+        font-size: $default-font-size + 1rem;
+        margin: 4rem 0 2rem 0;
     }
 
     &-h2 {
-        font-size: $default-font-size + .4rem;
+        font-size: $default-font-size + .5rem;
         margin: 4rem 0 1rem 0;
+    }
+
+    &-h3 {
+        font-size: $default-font-size + .2rem;
+        margin: 2rem 0 .5rem 0rem;
     }
 
     &-p {
@@ -57,21 +63,18 @@
 
     a, a:link, a:visited {
         color: $color-primary;
+        font-size: $default-font-size - 0.1rem;
         font-weight: 600;
         text-decoration: underline;
-        text-decoration-color: transparent;
-        text-underline-offset: 5px;
-        transition: all .2s;
-    }
-
-    a:hover {
         text-decoration-color: $color-primary;
+        text-underline-offset: 5px;
     }
 
     img {
         width: 100%;
         margin-bottom: $gap;
-        object-fit: fill;
+        object-fit: cover;
+        max-height: 40rem;
     }
 
     code {
