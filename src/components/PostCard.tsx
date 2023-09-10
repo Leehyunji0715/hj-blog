@@ -1,7 +1,8 @@
 import { Post } from "@prisma/client"
 import Image from "next/image";
 import { CalendarIcon } from "./icons";
-import Chip from "./Chip";
+import CategorySmallTag from "./CategorySmallTag";
+import { getCategoryColor } from "@/util/color";
 
 type Props = {
     post: Post;
@@ -9,7 +10,8 @@ type Props = {
 
 export default function PostCard({ post }: Props) {
     const imageSrc = post.image ?? '/default_post_img.jpg';
-    return <div className="card" style={{ position: 'relative' }}>
+
+    return <div data-color={getCategoryColor(post.category)} className="card" style={{ position: 'relative' }}>
         <Image 
             src={imageSrc} 
             width={200}
@@ -20,7 +22,7 @@ export default function PostCard({ post }: Props) {
         <div className="card-info">
             <h3 className="card-info__title">{post.title}</h3>
             <div className="card-info__meta">
-                <Chip text={`# ${post.category}`} size="xSmall" round/>
+                <CategorySmallTag category={post.category}/>
                 <time>
                     <CalendarIcon/>
                     {new Date(post.createdAt).toLocaleDateString()}
