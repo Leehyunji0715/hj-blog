@@ -1,3 +1,4 @@
+import CategoryChipList from "@/components/CategoryChipList";
 import GridPostList from "@/components/GridPostList";
 import PostPaginator from "@/components/PostPaginator";
 import { Category } from "@/model/Category";
@@ -15,6 +16,7 @@ export default async function BlogPageByCategory({ params: {category}, searchPar
         countInfo.reduce((acc, cur) => acc + cur._count, 0) 
         : countInfo.find(info => info.category === category)?._count ?? 0;
     return <>
+        <CategoryChipList/>
         <GridPostList posts={posts ?? []}/>
         <PostPaginator total={curCount}/>
     </>;

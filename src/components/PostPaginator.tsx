@@ -15,12 +15,11 @@ const _ = Array(3).fill([]);
 export default function PostPaginator({ total }: Props) {
     const path = usePathname();
     const router = useRouter();
-    const curPageNum = parseInt(useSearchParams().get('page') ?? '');
+    const curPageNum = Number(useSearchParams().get('page') ?? '');
     const rangeMin = 1;
     const rangeMax = Math.ceil(total / UNIT);
-    console.log("rangeMax", rangeMax);
     
-    if (curPageNum < rangeMin || curPageNum > rangeMax) {
+    if (Number.isNaN(curPageNum) || curPageNum < rangeMin || curPageNum > rangeMax) {
         redirect(`${path}?page=1`);
     }
 
@@ -58,6 +57,7 @@ export default function PostPaginator({ total }: Props) {
             { getPageNumList().map((value) => {
                 return (rangeMin < value && value < rangeMax) && (
                     <PaginatorItem 
+                        key={value}
                         item={value} 
                         onClick={() => movePage(value)}
                         isSelected={value === curPageNum}
