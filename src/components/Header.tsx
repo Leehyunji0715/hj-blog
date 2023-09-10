@@ -2,32 +2,39 @@
 
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
+import { useThemeAction, useThemeState } from "@/context/ThemeContext";
 import { GitHubIcon, MoonIcon, SunIcon } from "./icons";
-import { useEffect, useState } from "react";
 
 const menu = [
     { label: 'Home', href: '/' },
     { label: 'Blog', href: '/blog' },
 ];
 
+function getQueryString(href: string) {
+    if (href === '/blog') {
+        return '/all/?page=1';
+    }
+    return '';
+}
+
+function isSelectedMenu(pathname: string, href: string) {
+    if ((href === '/' && pathname === href)
+        || (href !== '/' && pathname.startsWith(href))
+    ) {
+        return true;
+    }
+    return false;
+}
+
+
 export default function Header() {
     const pathname = usePathname();
-    const [theme, setTheme] = useState<string>("dark");
+    const theme = useThemeState();
+    const changeTheme = useThemeAction();
 
     const handleDarkmode = () => {
-        setTheme(theme === 'light' ? 'dark' : 'light');
+        changeTheme(theme === 'light' ? 'dark' : 'light');
     };
-
-    useEffect(() => {
-        setTheme(window?.localStorage.getItem('theme') ?? "dark");
-    }, []);
-
-    useEffect(() => {
-        if (theme) {
-            document.body.setAttribute("data-theme", theme);
-            window.localStorage.setItem('theme', theme);
-        }
-    }, [theme]);
 
     return (
         <header className="header">
@@ -37,8 +44,8 @@ export default function Header() {
             <nav className="header__nav">
                 <ul className="header__nav-list">
                     { menu.map(({href, label}, i) => (
-                        <Link key={i} href={href}>
-                            <li className={`header__nav-list-item ${pathname === href ? "header__nav-list-item--selected" : ""}`}>
+                        <Link key={i} href={`${href}${getQueryString(href)}`}>
+                            <li className={`header__nav-list-item ${isSelectedMenu(pathname, href) ? "header__nav-list-item--selected" : ""}`}>
                                 {label}
                             </li>
                         </Link>
@@ -53,9 +60,9 @@ export default function Header() {
                             { theme === 'dark' ? <SunIcon/> : <MoonIcon/> }
                         </button>
                     </li>
-                    <li className='header__nav-list-item'>
+                    {/* <li className='header__nav-list-item'>
                         ENG
-                    </li>
+                    </li> */}
                 </ul>
             </nav>
         </header>
