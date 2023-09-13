@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import SWRConfigContext from '@/context/SWRConfigContext';
 import ThemeProvider from '@/context/ThemeProvider';
+import AuthSessionProvider from '@/context/SessionProvider';
 import '../scss/main.scss';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -23,17 +25,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className}`}>
-        <ThemeProvider>
-          <Header/>
-          <main>
-            <SWRConfigContext>
-                {children}
-            </SWRConfigContext>
-          </main>
-        </ThemeProvider>
-        <footer>
-          All rights reserved &copy; Hyunji, Lee {new Date().getFullYear()}
-        </footer>
+        <AuthSessionProvider>
+          <ThemeProvider>
+            <Header/>
+            <main>
+              <SWRConfigContext>
+                  {children}
+              </SWRConfigContext>
+            </main>
+            <Footer/>
+          </ThemeProvider>
+        </AuthSessionProvider>
       </body>
     </html>
   )
