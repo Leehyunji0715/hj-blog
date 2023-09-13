@@ -15,13 +15,11 @@ $color-grey-dark-3: #333;
 $color-white: #fff;
 $color-black: #000;
 
-body {
+:root {
     --color-text: #{$color-black};
-    --color-black: #000;
-    --color-white: #000;
 }
 
-body[data-theme="light"] {
+[data-theme="light"] {
     color: $color-black;
     background-color: $color-white;
     --color-text: #{$color-black};
@@ -37,7 +35,7 @@ body[data-theme="light"] {
     --border-secondary: #e6e9ee;
 }
   
-body[data-theme="dark"] {
+[data-theme="dark"] {
     color: $color-white;
     background-color: $color-grey;
     --color-text: #{$color-white};
