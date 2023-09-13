@@ -1,9 +1,8 @@
 'use client';
 
-import { usePathname, useSearchParams, useRouter, redirect } from "next/navigation";
+import { usePathname, useRouter, useParams, redirect } from "next/navigation";
 import { LeftIcon, RightIcon } from "./icons";
 import PaginatorItem from "./PaginatorItem";
-import { useEffect } from "react";
 
 type Props = {
     total: number;
@@ -15,16 +14,20 @@ const _ = Array(3).fill([]);
 export default function PostPaginator({ total }: Props) {
     const path = usePathname();
     const router = useRouter();
-    const curPageNum = Number(useSearchParams().get('page') ?? '');
+    const curPageNum = Number(useParams().slug[1]);
     const rangeMin = 1;
     const rangeMax = Math.ceil(total / UNIT);
     
     if (Number.isNaN(curPageNum) || curPageNum < rangeMin || curPageNum > rangeMax) {
-        redirect(`${path}?page=1`);
+        redirect(`/blog/all/1`);
     }
 
-    const movePage = (page: number) => {
-        router.push(`${path}?page=${page}`);
+    const movePage = (pageNo: number) => {
+        const matches = path.match(/\/([^/]+)\/([^/]+)/);
+        if (matches) {
+            const category = matches[2];
+            router.push(`/blog/${category}/${pageNo}`);
+        }
     };
 
     const getPageNumList = () => {
@@ -36,10 +39,6 @@ export default function PostPaginator({ total }: Props) {
             return [curPageNum - 1, curPageNum, curPageNum + 1];
         }
     };
-
-    useEffect(() => {
-        router.push(`${path}?page=1`);
-    }, []);
 
     return (
         <div className="pagination">
