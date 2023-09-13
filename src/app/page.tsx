@@ -56,8 +56,8 @@ export default function Home() {
       </SectionBox>
       <SectionBox title='Career' className='home__career'>
         <ul>
-          {careers.map(career => (
-            <li>
+          {careers.map((career, i) => (
+            <li key={i}>
               <div className='home__career-company-box'>
                 <span className='home__career-company'>{career.company}</span>
                 <span className='home__career-period'>{career.period}</span>
