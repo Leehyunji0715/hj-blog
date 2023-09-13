@@ -1,12 +1,11 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { cookies } from 'next/headers'
 import Header from '@/components/Header';
 import SWRConfigContext from '@/context/SWRConfigContext';
-import ThemeProvider from '@/context/ThemeContext';
+import ThemeProvider from '@/context/ThemeProvider';
 import '../scss/main.scss';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: `이현지's 블로그`,
@@ -20,20 +19,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const cookieStore = cookies();
-  const theme = cookieStore.get('theme')?.value as Theme;
 
   return (
     <html lang="en">
-      <body data-theme={theme} className={`${inter.className}`}>
-        <ThemeProvider initValue={theme}>
+      <body className={`${inter.className}`}>
+        <ThemeProvider>
           <Header/>
           <main>
             <SWRConfigContext>
                 {children}
             </SWRConfigContext>
           </main>
-          </ThemeProvider>
+        </ThemeProvider>
         <footer>
           All rights reserved &copy; Hyunji, Lee {new Date().getFullYear()}
         </footer>

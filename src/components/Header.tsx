@@ -1,8 +1,10 @@
 'use client';
 
 import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import { usePathname } from 'next/navigation';
-import { useThemeAction, useThemeState } from "@/context/ThemeContext";
+import { useTheme } from 'next-themes'
 import { GitHubIcon, MoonIcon, SunIcon } from "./icons";
 
 const menu = [
@@ -12,7 +14,7 @@ const menu = [
 
 function getQueryString(href: string) {
     if (href === '/blog') {
-        return '/all/?page=1';
+        return '/all/1';
     }
     return '';
 }
@@ -29,17 +31,21 @@ function isSelectedMenu(pathname: string, href: string) {
 
 export default function Header() {
     const pathname = usePathname();
-    const theme = useThemeState();
-    const changeTheme = useThemeAction();
+    const { theme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
 
     const handleDarkmode = () => {
-        changeTheme(theme === 'light' ? 'dark' : 'light');
+        setTheme(theme === 'light' ? 'dark' : 'light');
     };
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
 
     return (
         <header className="header">
             <Link href='/'>
-                <img src='/logo.png'/>
+                <Image width={100} height={50} src='/logo.png' alt="logo image"/>
             </Link>
             <nav className="header__nav">
                 <ul className="header__nav-list">
@@ -55,14 +61,15 @@ export default function Header() {
                             <GitHubIcon/>
                         </li>
                     </Link>
-                    <li className='header__nav-list-item'>
-                        <button onClick={handleDarkmode} className="thememode-btn">
-                            { theme === 'dark' ? <SunIcon/> : <MoonIcon/> }
-                        </button>
-                    </li>
-                    {/* <li className='header__nav-list-item'>
-                        ENG
-                    </li> */}
+                    {
+                        mounted && (
+                        <li className='header__nav-list-item'>
+                            <button onClick={handleDarkmode} className="thememode-btn">
+                                { theme === 'dark' ? <SunIcon/> : <MoonIcon/> }
+                            </button>
+                        </li>
+                        )
+                    }
                 </ul>
             </nav>
         </header>
