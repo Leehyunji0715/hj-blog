@@ -59,7 +59,8 @@
 
         &-item {
             display: flex;
-            gap: 2rem;
+            justify-content: center;
+            gap: 3rem;
             padding: 4rem 2.5rem;
             border-radius: 1rem;
             background-color: var(--bg-secondary);
@@ -69,8 +70,7 @@
             }
             
             &-img {
-                width: 40%;
-                // max-width: 30rem;
+                width: 35%;
                 object-fit: contain;
             }
 
