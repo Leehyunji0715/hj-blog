@@ -1,10 +1,20 @@
 'use client';
 
 import { signOut } from "next-auth/react";
-import Button from "./Button";
+import TextButton from "./TextButton";
+import { $Enums } from "@prisma/client";
 
-export default function SignOut() {
+type Props = {
+    role: $Enums.Role;
+}
+
+export default function SignOut({ role }: Props) {
+    const roleName = role === $Enums.Role.ADMIN ? "Admin" : "User";
     return (
-          <Button text='admin signout' onClick={() => signOut()}/>
+          <TextButton 
+            text={`${roleName} signout`} 
+            size="small"
+            onClick={() => signOut()}
+        />
       )
 }
