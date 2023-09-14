@@ -14,8 +14,8 @@ export default function PostCard({ post }: Props) {
     return <div data-color={getCategoryColor(post.category)} className="card" style={{ position: 'relative' }}>
         <Image 
             src={imageSrc} 
-            width={200}
-            height={300}
+            width={400}
+            height={400}
             alt={`image of ${post.title}`}
             className="card-img"
         />
