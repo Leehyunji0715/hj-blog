@@ -1,8 +1,16 @@
 .grid-list {
     display: grid;
     gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-    // repeat(3, minmax(25rem, 1fr));
+    grid-template-columns: repeat(3, minmax(25rem, 1fr));
+    
+    @media only screen and (max-width: $bp-large) {
+        grid-template-columns: repeat(2, minmax(25rem, 1fr));
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+        gap: 1.5rem;
+        grid-template-columns: repeat(1, minmax(25rem, 1fr));
+    }
 
     a,
     a:link,

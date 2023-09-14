@@ -56,4 +56,8 @@ $color-black: #000;
 $default-font-size: 1.6rem;
 
 // TRANSITION
-$default-transition-time: .1s;
+$default-transition-time: .2s;
+
+// MEDIA QUERY BREAK POINT
+$bp-large: 60.9375em; // 975px;
+$bp-medium: 39.0625em; // 625px

@@ -13,6 +13,11 @@ ul.blog-category {
     gap: 2rem;
     list-style: none;
 
+    @media only screen and (max-width: $bp-medium) {
+        gap: 1rem;
+        padding-bottom: 1.5rem;
+    }
+
     li {
         cursor: pointer;
         
