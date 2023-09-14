@@ -21,10 +21,23 @@ model Post {
   published Boolean  @default(false)
 }
 
+model User {
+  id        String   @id
+  createdAt DateTime @default(now())
+  name      String   @db.VarChar(255)
+  email     String   @db.VarChar(255)
+  role      Role     @default(USER)
+}
+
 enum Category {
   GENERAL
   TEST
   DEV
   STUDY
   PROJECT
+}
+
+enum Role {
+  USER
+  ADMIN
 }
