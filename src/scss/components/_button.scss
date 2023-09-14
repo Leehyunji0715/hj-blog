@@ -9,3 +9,29 @@
         fill: var(--color-text);
     }
 }
+
+.btn {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    transition: all .2s;
+
+    svg {
+        fill: var(--color-text);
+    }
+
+    &--text {
+        color: var(--text-secondary);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        background-color: transparent;
+    
+        &:hover {
+            color: currentColor;
+        }
+    }
+
+    &--sm {
+        font-size: $default-font-size - .4rem;
+    }
+}
