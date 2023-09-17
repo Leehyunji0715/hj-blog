@@ -24,7 +24,7 @@ export default async function BlogPageByCategory({ params: {slug}}: Props) {
     return <div className="blog">
         <CategoryChipList/>
         <div className="blog__post-list">
-            <GridPostList posts={posts ?? []}/>
+            { posts.length ? <GridPostList posts={posts}/> : "No Post"}
         </div>
         <PostPaginator total={curCount}/>
     </div>;

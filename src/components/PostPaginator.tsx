@@ -18,7 +18,8 @@ export default function PostPaginator({ total }: Props) {
     const rangeMin = 1;
     const rangeMax = Math.ceil(total / UNIT);
     
-    if (Number.isNaN(curPageNum) || curPageNum < rangeMin || curPageNum > rangeMax) {
+    if (rangeMax === 0) { } 
+    else if (Number.isNaN(curPageNum) || curPageNum < rangeMin || curPageNum > rangeMax) {
         redirect(`/blog/all/1`);
     }
 
