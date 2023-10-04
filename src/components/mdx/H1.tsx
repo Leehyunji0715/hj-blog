@@ -2,7 +2,11 @@ import { getAnchor } from "@/util/mdx";
 import React from "react"
 
 export default function H1({ children }: { children?: React.ReactNode }) {
-  const anchor = getAnchor(children as string);
+  let value = children;
+  if (Array.isArray(children)) {
+    value = children[0];
+  }
+  const anchor = getAnchor(value as string ?? '');
   const link = `#${anchor}`;
 
   return <h1 id={anchor} className="mdx-h1">

@@ -14,16 +14,19 @@
     &-h1 {
         font-size: $default-font-size + 1rem;
         margin: 4rem 0 2rem 0;
+        &:first-child { margin: 0 };
     }
 
     &-h2 {
         font-size: $default-font-size + .5rem;
         margin: 4rem 0 1rem 0;
+        &:first-child { margin: 0 };
     }
 
     &-h3 {
         font-size: $default-font-size + .2rem;
         margin: 2rem 0 .5rem 0rem;
+        &:first-child { margin: 0 };
     }
 
     &-p {
