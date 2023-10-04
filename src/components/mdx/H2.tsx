@@ -4,7 +4,11 @@ import { getAnchor } from "@/util/mdx";
 type Props = {};
 
 export default function H2({ children }: { children?: React.ReactNode }) {
-  const anchor = getAnchor(children as string);
+  let value = children;
+  if (Array.isArray(children)) {
+    value = children[0];
+  }
+  const anchor = getAnchor(value as string ?? '');
   const link = `#${anchor}`;
 
   return <h2 className="mdx-h2">
