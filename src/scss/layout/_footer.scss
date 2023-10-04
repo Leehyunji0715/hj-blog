@@ -11,3 +11,10 @@ footer {
         margin-top: 1.5rem;
     }
 }
+
+.footer-content {
+    width: 100%;
+    max-width: 150rem;
+    display: flex;
+    justify-content: space-between;
+}

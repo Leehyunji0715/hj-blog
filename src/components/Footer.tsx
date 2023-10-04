@@ -8,8 +8,10 @@ export default async function Footer() {
 
     return (
         <footer>
-          All rights reserved &copy; Hyunji, Lee {new Date().getFullYear()}
-          { session ? <SignOut role={session.user.role}/> : <SignIn/> }
+          <div className="footer-content">
+            All rights reserved &copy; Hyunji, Lee {new Date().getFullYear()}
+            { session ? <SignOut role={session.user.role}/> : <SignIn/> }
+          </div>
         </footer>
     );
 }
