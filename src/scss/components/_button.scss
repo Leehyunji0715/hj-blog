@@ -20,6 +20,17 @@
         fill: var(--color-text);
     }
 
+    &--bg {
+        font-weight: 500;
+        color: var(--text-inverse);
+        background-color: $color-primary;
+        padding: .5rem 1rem;
+
+        &:hover {
+            background-color: darken($color-primary, 10%);
+        }
+    }
+
     &--text {
         color: var(--text-secondary);
         text-decoration: underline;
