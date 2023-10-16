@@ -10,6 +10,7 @@ import { getPost } from "@/service/posts";
 import { EditIcon } from '@/components/icons';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { $Enums } from '@prisma/client';
+import { getImageSrcFrom } from '@/util/image';
 
 
 type Props = {
@@ -23,12 +24,12 @@ export default async function BlogPostPage({ params: {id} }: Props) {
     }
     const session = await getServerSession(authOptions);
     const post = await getPost(postId);
-    const imgSrc = post?.image ?? '/default_post_img.jpg';
     if (!post || !post.content) {
         redirect('/not-found');
     }
-
-    const { code } = await bundleMDX({ 
+    
+    const imgSrc = getImageSrcFrom(post);
+    const { code, frontmatter } = await bundleMDX({ 
         source: post.content,
         mdxOptions(options, frontmatter) {
             options.remarkPlugins = [...(options.remarkPlugins ?? []), remarkGfm]
@@ -36,6 +37,8 @@ export default async function BlogPostPage({ params: {id} }: Props) {
             return options;
         },
     });
+
+    // console.log("frontmatter", frontmatter);
 
     return <div className='post'>
         <header className='post__header'>
@@ -46,7 +49,7 @@ export default async function BlogPostPage({ params: {id} }: Props) {
                 }
             </h1>
             <time>{new Date(post.createdAt).toLocaleDateString()}</time>
-            <Image src={imgSrc} width={500} height={400} alt={`image of ${post.title}`}/>
+            <Image src={imgSrc} width={500} height={500} alt={`image of ${post.title}`}/>
         </header>
         <article>
             <MDXArticle code={code} />

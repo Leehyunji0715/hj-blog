@@ -3,17 +3,16 @@ import Image from "next/image";
 import { CalendarIcon } from "./icons";
 import CategorySmallTag from "./CategorySmallTag";
 import { getCategoryColor } from "@/util/color";
+import { getImageSrcFrom } from "@/util/image";
 
 type Props = {
     post: Post;
 }
 
 export default function PostCard({ post }: Props) {
-    const imageSrc = post.image ?? '/default_post_img.jpg';
-
     return <div data-color={getCategoryColor(post.category)} className="card" style={{ position: 'relative' }}>
         <Image 
-            src={imageSrc} 
+            src={getImageSrcFrom(post)}
             width={400}
             height={400}
             alt={`image of ${post.title}`}
