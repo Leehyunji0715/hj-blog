@@ -52,14 +52,17 @@ export async function getPost(id: number): Promise<Post | null> {
 }
 
 export async function addPost({ title, content, category, image }: 
-    { title: string, content: string, category: $Enums.Category, image?: string }
+    { title: string, content: string, category: $Enums.Category, image?: string | Blob, imageFile?: Blob }
 ) {
+    const arrayBuffer = typeof image !== 'string' ? await (image as Blob)?.arrayBuffer() : null;
+
     return await prisma.post.create({
         data: {
           title: title,
           content: content,
           category: category,
-          image: image ?? '',
+          image: typeof image === 'string' ? image : null,
+          imageFile: arrayBuffer ? Buffer.from(arrayBuffer) : null,
           published: true
         }
     })
