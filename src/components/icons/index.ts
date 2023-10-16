@@ -12,6 +12,7 @@ import { TailwindIcon } from './TailwindIcon';
 import { LeftIcon } from "./LeftIcon";
 import { RightIcon } from "./RightIcon";
 import { EditIcon } from './EditIcon';
+import { PlusIcon } from './PlusIcon';
 
 
 export { GitHubIcon, JavascriptIcon, TypescriptIcon, ReactIcon, NextJsIcon, SassIcon, TailwindIcon };

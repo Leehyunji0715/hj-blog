@@ -6,10 +6,14 @@ import { useEffect, useState } from "react";
 import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes'
 import { GitHubIcon, MoonIcon, SunIcon } from "./icons";
+import { useSession } from "next-auth/react";
+import { PlusIcon } from "./icons/PlusIcon";
+import { $Enums } from "@prisma/client";
 
 const menu = [
     { label: 'Home', href: '/' },
     { label: 'Blog', href: '/blog' },
+    { label: <GitHubIcon/>, href: 'https://github.com/Leehyunji0715', props: { target: "_blank" } },
 ];
 
 function getQueryString(href: string) {
@@ -28,11 +32,11 @@ function isSelectedMenu(pathname: string, href: string) {
     return false;
 }
 
-
 export default function Header() {
     const pathname = usePathname();
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
+    const { data } = useSession();
 
     const handleDarkmode = () => {
         setTheme(theme === 'light' ? 'dark' : 'light');
@@ -49,18 +53,22 @@ export default function Header() {
             </Link>
             <nav className="header__nav">
                 <ul className="header__nav-list">
-                    { menu.map(({href, label}, i) => (
-                        <Link key={i} href={`${href}${getQueryString(href)}`}>
-                            <li className={`header__nav-list-item ${isSelectedMenu(pathname, href) ? "header__nav-list-item--selected" : ""}`}>
+                    {
+                        data?.user.role === $Enums.Role.ADMIN && (
+                        <Link href={'/post/add'}>
+                            <li className={`header__nav-list-item  ${isSelectedMenu(pathname, '/post/add') && "header__nav-list-item--selected"}`}>
+                                <PlusIcon/>
+                            </li>
+                        </Link>
+                        )
+                    }
+                    { menu.map(({href, label, props}, i) => (
+                        <Link key={i} href={`${href}${getQueryString(href)}`} {...props}>
+                            <li className={`header__nav-list-item ${isSelectedMenu(pathname, href) && "header__nav-list-item--selected"}`}>
                                 {label}
                             </li>
                         </Link>
                     )) }
-                    <Link href={'https://github.com/Leehyunji0715'} target="_blank">
-                        <li className='header__nav-list-item'>
-                            <GitHubIcon/>
-                        </li>
-                    </Link>
                     {
                         mounted && (
                         <li className='header__nav-list-item'>
