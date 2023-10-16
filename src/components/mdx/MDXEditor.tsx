@@ -16,11 +16,12 @@ export default function MDXEditor({ content, onChange }: Props) {
     const [value, setValue] = useState(content);
 
     return (
-        <section style={{ display: 'flex', gap: '2rem', marginTop: '3rem', fontSize: '1.2rem' }}>
+        <section style={{ display: 'flex', gap: '2rem', fontSize: '1.2rem' }}>
             <textarea 
                 id="my-text-area"
                 value={value} 
                 style={{ width: '100%', padding: '2rem' }}
+                rows={20}
                 onChange={(e) => {
                     setValue(e.target.value);
                     onChange(e.target.value);
