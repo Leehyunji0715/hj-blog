@@ -18,6 +18,7 @@ model Post {
   category  Category @default(GENERAL)
   content   String?
   image     String?  @db.VarChar(255)
+  imageFile Bytes?
   published Boolean  @default(false)
 }
 
