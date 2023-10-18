@@ -30,7 +30,6 @@ export default function MDXEditor({ content, onChange }: Props) {
             <div className='md-preview' style={{ flex: '0 0 50%', overflow: 'hidden auto' }}>
                 <Markdown
                     className="mdx m-0"
-                    children={value}
                     options={{
                         overrides: {
                             h1: { component: H1 },
@@ -43,7 +42,9 @@ export default function MDXEditor({ content, onChange }: Props) {
                             }
                         }
                     }}
-                />
+                >
+                 {value}   
+                </Markdown>
             </div>
         </section>
     )
