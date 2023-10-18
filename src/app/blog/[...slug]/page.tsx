@@ -9,6 +9,8 @@ type Props = {
     params: { slug: string[] }
 };
 
+export const dynamic = 'force-static';
+
 export async function generateStaticParams() {
     return Object.values($Enums.Category).map((category) => ([ category, 1 ]))
 }   
@@ -21,6 +23,7 @@ export default async function BlogPageByCategory({ params: {slug}}: Props) {
     const curCount = category === 'all' ? 
         countInfo.reduce((acc, cur) => acc + cur._count, 0) 
         : countInfo.find(info => info.category === category)?._count ?? 0;
+    
     return <div className="blog">
         <CategoryChipList/>
         <div className="blog__post-list">
