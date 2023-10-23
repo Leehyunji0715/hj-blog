@@ -40,7 +40,7 @@ export default function ImageDragDrop({ onChangeImage, disabled }: Props) {
             setFile(files[0]);
             onChangeImage(files[0]);
         }
-    }, []);
+    }, [onChangeImage]);
 
     return (
         <div className="w-100 form-img">
