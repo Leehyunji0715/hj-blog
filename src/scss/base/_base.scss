@@ -9,6 +9,10 @@
 html {
     font-size: 62.5%;
     transition: background-color 0.2s, color 0.2s;
+
+    @media only screen and (max-width: $bp-medium) {
+        font-size: 55%;
+    }
 }
 
 body {
