@@ -32,8 +32,8 @@ export default function Home() {
           <h3 className='mt-sm' >Enjoying new experience and learning</h3>
         </div>
         <div className='profile-img'>
-          <Image className='profile-img-bg' src='/profile_bg.svg' fill alt='profile background'/>
-          <Image className='profile-img-main' src='/sample_profile.png' fill alt='profile'/>
+          <Image priority className='profile-img-bg' src='/profile_bg.svg' fill alt='profile background'/>
+          <Image priority className='profile-img-main' src='/sample_profile.png' fill alt='profile'/>
         </div>
       </section>
       <SectionBox title='Skills' className='home__skill'>
