@@ -11,6 +11,22 @@ export async function postCount() {
         await prisma.$disconnect();
     });
 }
+export async function getAllPostIds(): Promise<{id: number}[]> {
+    return await prisma.post.findMany({
+        where: { published: true },
+        select: { id: true },
+        orderBy: {
+            createdAt: 'desc'
+        }
+    })
+    .catch(async (e) => {
+        await prisma.$disconnect();
+        process.exit(1);
+    })
+    .finally(async () => {
+        await prisma.$disconnect();
+    });
+}
 
 export async function getPosts(pageNo: number = 0, category?: $Enums.Category): Promise<Post[]> {
     const size = 12;

@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypePrettyCode from 'rehype-pretty-code';
 import { bundleMDX } from 'mdx-bundler';
 import MDXArticle from "@/components/mdx/MDXArticle";
-import { getPost } from "@/service/posts";
+import { getAllPostIds, getPost } from "@/service/posts";
 import { EditIcon } from '@/components/icons';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { $Enums } from '@prisma/client';
@@ -16,6 +16,15 @@ import { getImageSrcFrom } from '@/util/image';
 type Props = {
     params: { id: string }
 };
+
+export async function generateStaticParams() {
+    const arr = await getAllPostIds();
+    if (!arr) return [];
+
+    return arr.map((item) => ({
+        id: item.id.toString()
+    }));
+}
 
 export default async function BlogPostPage({ params: {id} }: Props) {
     const postId = Number(id);
