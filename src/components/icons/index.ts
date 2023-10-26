@@ -17,5 +17,5 @@ import { PlusIcon } from './PlusIcon';
 
 export { GitHubIcon, JavascriptIcon, TypescriptIcon, ReactIcon, NextJsIcon, SassIcon, TailwindIcon };
 export { MoonIcon, SunIcon };
-export { MouseIcon, CalendarIcon, EditIcon };
+export { MouseIcon, CalendarIcon, EditIcon, PlusIcon };
 export { LeftIcon, RightIcon };

@@ -11,31 +11,12 @@
         width: 6rem;
     }
 
-    &__nav {}
-
-    &__nav-list {
+    &__nav {
         display: flex;
-        align-items: center;
         gap: 2.5rem;
-        list-style: none;
-        
-        a,
-        a:link,
-        a:visited,
-        a:active {
-            text-decoration: none;
-        }
-    }
-
-    &__nav-list-item {
         font-size: $default-font-size;
         color: var(--color-text);
         text-decoration: none;
-
-        &:hover {
-            color: $color-primary;
-            transition: color $default-transition-time;
-        }
 
         & svg {
             width: 3rem;
@@ -44,6 +25,26 @@
                 fill: $color-primary;
                 transition: fill $default-transition-time;
             }
+        }
+
+        & li:hover {
+            color: $color-primary;
+            transition: color $default-transition-time;
+        }
+    }
+
+    &__nav-list {
+        display: flex;
+        gap: 2.5rem;
+        align-items: center;
+        list-style: none;
+        
+        a,
+        a:link,
+        a:visited,
+        a:active {
+            color: currentColor;
+            text-decoration: none;
         }
     }
     

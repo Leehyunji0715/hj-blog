@@ -2,13 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { usePathname } from 'next/navigation';
-import { useTheme } from 'next-themes'
-import { GitHubIcon, MoonIcon, SunIcon } from "./icons";
 import { useSession } from "next-auth/react";
-import { PlusIcon } from "./icons/PlusIcon";
+import { usePathname } from 'next/navigation';
+import { GitHubIcon, PlusIcon } from "./icons";
 import { $Enums } from "@prisma/client";
+import ThemeSwitch from "./ThemeSwitch";
 
 const menu = [
     { label: 'Home', href: '/' },
@@ -34,17 +32,7 @@ function isSelectedMenu(pathname: string, href: string) {
 
 export default function Header() {
     const pathname = usePathname();
-    const { theme, setTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
     const { data } = useSession();
-
-    const handleDarkmode = () => {
-        setTheme(theme === 'light' ? 'dark' : 'light');
-    };
-
-    useEffect(() => {
-        setMounted(true)
-    }, [])
 
     return (
         <header className="header">
@@ -55,8 +43,8 @@ export default function Header() {
                 <ul className="header__nav-list">
                     {
                         data?.user.role === $Enums.Role.ADMIN && (
-                        <Link href={'/post/add'}>
-                            <li className={`header__nav-list-item  ${isSelectedMenu(pathname, '/post/add') && "header__nav-list-item--selected"}`}>
+                        <Link key='/post/add' href='/post/add'>
+                            <li className={`${isSelectedMenu(pathname, '/post/add') && "header__nav-list-item--selected"}`}>
                                 <PlusIcon/>
                             </li>
                         </Link>
@@ -64,21 +52,13 @@ export default function Header() {
                     }
                     { menu.map(({href, label, props}, i) => (
                         <Link key={i} href={`${href}${getQueryString(href)}`} {...props}>
-                            <li className={`header__nav-list-item ${isSelectedMenu(pathname, href) && "header__nav-list-item--selected"}`}>
+                            <li className={`${isSelectedMenu(pathname, href) && "header__nav-list-item--selected"}`}>
                                 {label}
                             </li>
                         </Link>
                     )) }
-                    {
-                        mounted && (
-                        <li className='header__nav-list-item'>
-                            <button onClick={handleDarkmode} className="thememode-btn">
-                                { theme === 'dark' ? <SunIcon/> : <MoonIcon/> }
-                            </button>
-                        </li>
-                        )
-                    }
                 </ul>
+                <ThemeSwitch/>
             </nav>
         </header>
     )
