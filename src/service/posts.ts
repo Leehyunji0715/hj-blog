@@ -1,6 +1,11 @@
-import { cache } from "react";
 import { $Enums, Post } from "@prisma/client";
 import { prisma } from "./prisma";
+
+export const data: {
+    posts: Post[] | undefined
+} = {
+    posts: undefined
+};
 
 export async function postCount() {
     return await prisma.post.groupBy({ by: 'category', _count: true})
@@ -13,12 +18,19 @@ export async function postCount() {
     });
 }
 
-export const getAllPosts = cache(async (): Promise<Post[]> => {
-    return await prisma.post.findMany({
+export async function getAllPosts(): Promise<Post[]> {
+    console.log(data.posts?.length);
+    if (data.posts) return data.posts;
+
+    return prisma.post.findMany({
         where: { published: true },
         orderBy: {
             createdAt: 'desc'
         }
+    })
+    .then(posts => {
+        data.posts = posts;
+        return posts;
     })
     .catch(async (e) => {
         await prisma.$disconnect();
@@ -27,7 +39,7 @@ export const getAllPosts = cache(async (): Promise<Post[]> => {
     .finally(async () => {
         await prisma.$disconnect();
     });
-})
+}
 
 export async function getPosts(pageNo: number = 0, category?: $Enums.Category): Promise<Post[]> {
     const size = 12;
