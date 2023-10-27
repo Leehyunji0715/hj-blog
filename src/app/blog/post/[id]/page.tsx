@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypePrettyCode from 'rehype-pretty-code';
 import { bundleMDX } from 'mdx-bundler';
 import MDXArticle from "@/components/mdx/MDXArticle";
-import { getAllPostIds, getPost } from "@/service/posts";
+import { getAllPosts, getPost } from "@/service/posts";
 import { EditIcon } from '@/components/icons';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { $Enums } from '@prisma/client';
@@ -18,7 +18,7 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-    const arr = await getAllPostIds();
+    const arr = await getAllPosts();
     if (!arr) return [];
 
     return arr.map((item) => ({

@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { $Enums, Post } from "@prisma/client";
 import { prisma } from "./prisma";
 
@@ -11,10 +12,10 @@ export async function postCount() {
         await prisma.$disconnect();
     });
 }
-export async function getAllPostIds(): Promise<{id: number}[]> {
+
+export const getAllPosts = cache(async (): Promise<Post[]> => {
     return await prisma.post.findMany({
         where: { published: true },
-        select: { id: true },
         orderBy: {
             createdAt: 'desc'
         }
@@ -26,7 +27,7 @@ export async function getAllPostIds(): Promise<{id: number}[]> {
     .finally(async () => {
         await prisma.$disconnect();
     });
-}
+})
 
 export async function getPosts(pageNo: number = 0, category?: $Enums.Category): Promise<Post[]> {
     const size = 12;
@@ -55,16 +56,7 @@ export async function getPosts(pageNo: number = 0, category?: $Enums.Category): 
 }
 
 export async function getPost(id: number): Promise<Post | null> {
-    return await prisma.post.findFirst({
-        where: { id: id }
-    })
-    .catch(async (e) => {
-        await prisma.$disconnect();
-        process.exit(1);
-    })
-    .finally(async () => {
-        await prisma.$disconnect();
-    });
+    return (await getAllPosts()).find(post => post.id === id) ?? null;
 }
 
 export async function addPost({ title, content, category, image }: 
