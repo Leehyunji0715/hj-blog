@@ -8,5 +8,5 @@ export function getImageSrcFrom(post: Post) {
     if (post.image) {
         return post.image;
     }
-    return '/static/images/default_post_img.jpg';
+    return '/default_post_img.jpg';
 }
