@@ -32,8 +32,8 @@ export default function Home() {
           <h3 className='mt-sm' >Enjoying new experience and learning</h3>
         </div>
         <div className='profile-img'>
-          <Image priority className='profile-img-bg' src='/static/images/profile_bg.svg' fill alt='profile background'/>
-          <Image priority className='profile-img-main' src='/static/images/sample_profile.png' fill alt='profile'/>
+          <Image priority className='profile-img-bg' src='/profile_bg.svg' fill alt='profile background'/>
+          <Image priority className='profile-img-main' src='/sample_profile.png' fill alt='profile'/>
         </div>
       </section>
       <SectionBox title='Skills' className='home__skill'>
@@ -69,13 +69,13 @@ export default function Home() {
       </SectionBox>
       <SectionBox title='Projects' direction='center' className='home__project'>
         <div className='home__project-item'>
-          <Image src='/static/images/logo.png' width={300} height={300} alt='blog image' className='home__project-item-img'/>
+          <Image src='/logo.png' width={300} height={300} alt='blog image' className='home__project-item-img'/>
           <div className='home__project-item-description'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt tortor vel ex pretium, sit amet vestibulum ligula sodales. Curabitur a sem ligula. Etiam ut convallis nulla. Donec quis condimentum urna. Cras at ultricies tortor, a commodo nibh. Proin ac mi gravida tellus gravida ullamcorper at et est.
           </div>
         </div>
         <div className='home__project-item'>
-          <Image src='/static/images/logo.png' width={300} height={300} alt='blog image' className='home__project-item-img'/>
+          <Image src='/logo.png' width={300} height={300} alt='blog image' className='home__project-item-img'/>
           <div className='home__project-item-description'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt tortor vel ex pretium, sit amet vestibulum ligula sodales. Curabitur a sem ligula. Etiam ut convallis nulla. Donec quis condimentum urna. Cras at ultricies tortor, a commodo nibh. Proin ac mi gravida tellus gravida ullamcorper at et est.
           </div>
