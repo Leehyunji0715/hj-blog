@@ -6,10 +6,8 @@ import SWRConfigContext from '@/context/SWRConfigContext';
 import ThemeProvider from '@/context/ThemeProvider';
 import AuthSessionProvider from '@/context/SessionProvider';
 import '../scss/main.scss';
-// import { PostListProvider } from '@/context/PostListProvider';
-// import { getAllPosts } from '@/service/posts';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], fallback: ['system-ui', 'arial']});
 
 export const metadata: Metadata = {
   title: `이현지's 블로그`,
@@ -23,14 +21,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  // console.log("layout");
-  // const posts = await getAllPosts();
   return (
     <html lang="en">
       <body className={`${inter.className}`}>
         <AuthSessionProvider>
           <ThemeProvider>
-            {/* <PostListProvider initValue={posts}> */}
             <Header/>
             <main>
               <SWRConfigContext>
@@ -38,7 +33,6 @@ export default function RootLayout({
               </SWRConfigContext>
             </main>
             <Footer/>
-            {/* </PostListProvider> */}
           </ThemeProvider>
         </AuthSessionProvider>
       </body>
