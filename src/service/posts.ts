@@ -19,7 +19,6 @@ export async function postCount() {
 }
 
 export async function getAllPosts(): Promise<Post[]> {
-    console.log(data.posts?.length);
     if (data.posts) return data.posts;
 
     return prisma.post.findMany({
