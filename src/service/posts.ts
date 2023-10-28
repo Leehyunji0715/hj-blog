@@ -1,74 +1,55 @@
-import { $Enums, Post } from "@prisma/client";
+import path from "path";
+import { cache } from "react";
+import { promises as fs } from "fs"; 
+import { $Enums } from "@prisma/client";
 import { prisma } from "./prisma";
 
-export const data: {
-    posts: Post[] | undefined
-} = {
-    posts: undefined
+export type Post = {
+    title: string;
+    description: string;
+    date: Date;
+    category: string;
+    path: string;
+    featured: boolean
 };
 
-export async function postCount() {
-    return await prisma.post.groupBy({ by: 'category', _count: true})
-    .catch(async (e) => {
-        await prisma.$disconnect();
-        process.exit(1);
-    })
-    .finally(async () => {
-        await prisma.$disconnect();
-    });
+export type PostData = Post & { content: string, next: Post | null, prev: Post | null };
+
+// export async function postCount() {
+//     return await prisma.post.groupBy({ by: 'category', _count: true})
+//     .catch(async (e) => {
+//         await prisma.$disconnect();
+//         process.exit(1);
+//     })
+//     .finally(async () => {
+//         await prisma.$disconnect();
+//     });
+// }
+
+export const getPosts = cache(async () => {
+    const filePath = path.join(process.cwd(), 'src/data', 'posts.json');
+    return fs.readFile(filePath, 'utf-8')
+        .then<Post[]>(JSON.parse)
+        .then((posts) => posts.sort((a, b) => a.date > b.date ? -1 : 1));
+});
+
+export async function getPost(path: string): Promise<Post | undefined> {
+    const posts = await getPosts();
+    return posts.find((item) => item.path === path);
 }
 
-export async function getAllPosts(): Promise<Post[]> {
-    console.log(data.posts?.length);
-    if (data.posts) return data.posts;
+export async function getPostContent(fileName: string): Promise<PostData>  {
+    const filePath = path.join(process.cwd(), 'src/data', 'posts', `${fileName}.mdx`);
+    const posts = await getPosts();
+    const post = posts.find(post => post.path === fileName);
 
-    return prisma.post.findMany({
-        where: { published: true },
-        orderBy: {
-            createdAt: 'desc'
-        }
-    })
-    .then(posts => {
-        data.posts = posts;
-        return posts;
-    })
-    .catch(async (e) => {
-        await prisma.$disconnect();
-        process.exit(1);
-    })
-    .finally(async () => {
-        await prisma.$disconnect();
-    });
-}
+    if (!post)  throw new Error(`${fileName}에 해당하는 내용을 찾을 수 없음`);
+    const index = posts.indexOf(post);
+    const prev = index > 0 ? posts[index - 1]: null;
+    const next = index < posts.length - 1 ? posts[index + 1] : null;
+    const content = await fs.readFile(filePath, 'utf-8');
 
-export async function getPosts(pageNo: number = 0, category?: $Enums.Category): Promise<Post[]> {
-    const size = 12;
-    const where = {
-        published: true,
-        category
-    };
-    if (!where.category) {
-        delete where.category;
-    }
-    return await prisma.post.findMany({
-        skip: (pageNo - 1) * size,
-        take: size,
-        where: where,
-        orderBy: {
-            createdAt: 'desc'
-        }
-    })
-    .catch(async (e) => {
-        await prisma.$disconnect();
-        process.exit(1);
-    })
-    .finally(async () => {
-        await prisma.$disconnect();
-    });
-}
-
-export async function getPost(id: number): Promise<Post | null> {
-    return (await getAllPosts()).find(post => post.id === id) ?? null;
+    return { next, prev, content, ...post };
 }
 
 export async function addPost({ title, content, category, image }: 

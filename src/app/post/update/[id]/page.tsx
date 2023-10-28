@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { getServerSession } from 'next-auth';
 import UpdatePost from '@/components/admin/UpdatePost';
-import { getPost } from '@/service/posts';
+import { getPostContent } from '@/service/posts';
 import { $Enums } from '@prisma/client';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
@@ -20,15 +20,15 @@ export default async function BlogUpdatePage({ params: { id } }: Props) {
         </div>
     }
     
-    const post = await getPost(Number(id));
-    if (!post || !post.content) {
+    const post = await getPostContent(id);
+    if (!post) {
         return "no post";
     }
 
     return <>
         <UpdatePost 
             id={Number(id)} 
-            image={post.image ?? ''} 
+            image={/*post.image ??*/ ''} 
             content={post.content} 
         />
     </>

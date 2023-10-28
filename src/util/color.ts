@@ -1,6 +1,6 @@
 import { $Enums } from "@prisma/client";
 
-export function getCategoryColor(category: $Enums.Category) {
+export function getCategoryColor(category: string | $Enums.Category) {
     switch(category) {
         case $Enums.Category.GENERAL:
             return 'yellow';
