@@ -1,8 +1,6 @@
 import path from "path";
 import { cache } from "react";
-import { promises as fs } from "fs"; 
-import { $Enums } from "@prisma/client";
-import { prisma } from "./prisma";
+import { promises as fs } from "fs";
 
 export type Post = {
     title: string;
@@ -50,50 +48,4 @@ export async function getPostContent(fileName: string): Promise<PostData>  {
     const content = await fs.readFile(filePath, 'utf-8');
 
     return { next, prev, content, ...post };
-}
-
-export async function addPost({ title, content, category, image }: 
-    { title: string, content: string, category: $Enums.Category, image?: string | Blob, imageFile?: Blob }
-) {
-    const arrayBuffer = typeof image !== 'string' ? await (image as Blob)?.arrayBuffer() : null;
-
-    return await prisma.post.create({
-        data: {
-          title: title,
-          content: content,
-          category: category,
-          image: typeof image === 'string' ? image : null,
-          imageFile: arrayBuffer ? Buffer.from(arrayBuffer) : null,
-          published: true
-        }
-    })
-    .catch(async (e) => {
-        await prisma.$disconnect();
-        process.exit(1);
-    })
-    .finally(async () => {
-        await prisma.$disconnect();
-    });
-}
-
-export async function updatePost({ id, content, image }: 
-    { id: number, content: string, image?: string }
-) {
-    const data = { content, image };
-
-    if (!image) {
-        delete data.image;
-    }
-
-    return await prisma.post.update({
-        where: { id: id },
-        data
-    })
-    .catch(async (e) => {
-        await prisma.$disconnect();
-        process.exit(1);
-    })
-    .finally(async () => {
-        await prisma.$disconnect();
-    });
 }

@@ -4,7 +4,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SWRConfigContext from '@/context/SWRConfigContext';
 import ThemeProvider from '@/context/ThemeProvider';
-import AuthSessionProvider from '@/context/SessionProvider';
 import '../scss/main.scss';
 
 const inter = Inter({ subsets: ['latin'], fallback: ['system-ui', 'arial'] });
@@ -24,7 +23,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className}`}>
-        <AuthSessionProvider>
           <ThemeProvider>
             <Header/>
             <main>
@@ -34,7 +32,6 @@ export default function RootLayout({
             </main>
             <Footer/>
           </ThemeProvider>
-        </AuthSessionProvider>
       </body>
     </html>
   )

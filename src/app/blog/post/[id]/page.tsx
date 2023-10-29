@@ -1,15 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from "next/navigation";
-import { getServerSession } from 'next-auth';
 import remarkGfm from "remark-gfm";
 import rehypePrettyCode from 'rehype-pretty-code';
 import { bundleMDX } from 'mdx-bundler';
 import MDXArticle from "@/components/mdx/MDXArticle";
 import { getPosts, getPost, getPostContent } from "@/service/posts";
 import { EditIcon } from '@/components/icons';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { $Enums } from '@prisma/client';
 import { getImageSrcFrom } from '@/util/image';
 
 
@@ -27,7 +24,6 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogPostPage({ params: {id} }: Props) {
-    const session = await getServerSession(authOptions);
     const post = await getPostContent(id);
     if (!post) {
         redirect('/not-found');
@@ -50,9 +46,6 @@ export default async function BlogPostPage({ params: {id} }: Props) {
         <header className='post__header'>
             <h1>
                 [{post.category}] - {post.title}
-                {
-                    session?.user.role === $Enums.Role.ADMIN && <Link href={`/post/update/${post.path}`}><EditIcon/></Link> 
-                }
             </h1>
             <time>{new Date(post.date /*post.createdAt*/).toLocaleDateString()}</time>
             <Image src={'/default_post_img.jpg'} width={500} height={500} alt={`image of ${post.title}`}/>

@@ -3,7 +3,6 @@ import GridPostList from "@/components/GridPostList";
 import PostPaginator from "@/components/PostPaginator";
 import { Category } from "@/model/Category";
 import { getPosts } from "@/service/posts";
-import { $Enums } from "@prisma/client";
 
 type Props = {
     params: { slug: string[] }
@@ -12,12 +11,13 @@ type Props = {
 export const dynamic = 'force-static';
 
 export async function generateStaticParams() {
-    return Object.values($Enums.Category).map((category) => ([ category, 1 ]))
+    return Object.values(Category).map((category) => ([ category, 1 ]))
 }   
 
+const ALL = 'all';
+
 export default async function BlogPageByCategory({ params: {slug}}: Props) {
-    // export const ALL = 'all';
-    const categories = Object.values($Enums.Category); // ['all'].concat(Object.values($Enums.Category));
+    const categories = Object.values(Category);
     const category = slug[0] as Category;
     const pageNo = Number(slug[1]);
     // const posts = await getPosts(pageNo, category === 'all' ? undefined : category);

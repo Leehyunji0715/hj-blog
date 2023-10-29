@@ -2,10 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
 import { usePathname } from 'next/navigation';
 import { GitHubIcon, PlusIcon } from "./icons";
-import { $Enums } from "@prisma/client";
 import ThemeSwitch from "./ThemeSwitch";
 
 const menu = [
@@ -32,7 +30,6 @@ function isSelectedMenu(pathname: string, href: string) {
 
 export default function Header() {
     const pathname = usePathname();
-    const { data } = useSession();
 
     return (
         <header className="header">
@@ -41,7 +38,7 @@ export default function Header() {
             </Link>
             <nav className="header__nav">
                 <ul className="header__nav-list">
-                    {
+                    {/* {
                         data?.user.role === $Enums.Role.ADMIN && (
                         <Link key='/post/add' href='/post/add'>
                             <li className={`${isSelectedMenu(pathname, '/post/add') && "header__nav-list-item--selected"}`}>
@@ -49,7 +46,7 @@ export default function Header() {
                             </li>
                         </Link>
                         )
-                    }
+                    } */}
                     { menu.map(({href, label, props}, i) => (
                         <Link key={i} href={`${href}${getQueryString(href)}`} {...props}>
                             <li className={`${isSelectedMenu(pathname, href) && "header__nav-list-item--selected"}`}>
