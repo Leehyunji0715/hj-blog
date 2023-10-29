@@ -14,6 +14,8 @@ type Props = {
     params: { id: string }
 };
 
+export const dynamic = 'force-static';
+
 export async function generateStaticParams() {
     const arr = await getPosts();
     if (!arr) return [];
