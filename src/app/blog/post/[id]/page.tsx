@@ -1,12 +1,10 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { redirect } from "next/navigation";
 import remarkGfm from "remark-gfm";
 import rehypePrettyCode from 'rehype-pretty-code';
 import { bundleMDX } from 'mdx-bundler';
 import MDXArticle from "@/components/mdx/MDXArticle";
-import { getPosts, getPost, getPostContent } from "@/service/posts";
-import { EditIcon } from '@/components/icons';
+import { getPosts, getPostContent } from "@/service/posts";
 import { getImageSrcFrom } from '@/util/image';
 
 
@@ -32,7 +30,7 @@ export default async function BlogPostPage({ params: {id} }: Props) {
     }
     
     const {content} = post;
-    // const imgSrc = getImageSrcFrom(post);
+    const imgSrc = getImageSrcFrom(post);
     const { code, frontmatter } = await bundleMDX({ 
         source: content /*post.content*/,
         mdxOptions(options, frontmatter) {
@@ -50,7 +48,7 @@ export default async function BlogPostPage({ params: {id} }: Props) {
                 [{post.category}] - {post.title}
             </h1>
             <time>{new Date(post.date /*post.createdAt*/).toLocaleDateString()}</time>
-            <Image src={'/default_post_img.jpg'} width={500} height={500} alt={`image of ${post.title}`}/>
+            <Image src={imgSrc} width={500} height={500} alt={`image of ${post.title}`}/>
         </header>
         <article>
             <MDXArticle code={code} />

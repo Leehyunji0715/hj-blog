@@ -8,7 +8,7 @@ export type Post = {
     date: Date;
     category: string;
     path: string;
-    featured: boolean
+    image: string;
 };
 
 export type PostData = Post & { content: string, next: Post | null, prev: Post | null };

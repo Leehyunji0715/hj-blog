@@ -1,4 +1,3 @@
-import Link from "next/link";
 import PostCard from "./PostCard";
 import { Post } from "@/service/posts";
 
@@ -11,10 +10,6 @@ export default function GridPostList({ posts }: Props) {
         return "No Post";
     }
     return <div className="grid-list mb-lg">
-        { posts.map((post, i) => (
-            <Link key={post.path} href={`/blog/post/${post.path}`}>
-                <PostCard key={post.path} post={post} priority={i<6}/>
-            </Link>)) 
-        }
+        { posts.map((post, i) => <PostCard key={post.path} post={post} priority={i<6}/>) }
     </div>;
 }
