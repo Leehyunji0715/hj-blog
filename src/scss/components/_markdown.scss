@@ -48,6 +48,31 @@
             margin-bottom: 1rem;
         }
     }
+
+    &-pre {
+        position: relative;
+        background-color: rgb(34, 39, 46); /* TODO */
+        
+        button {
+            color: $color-white;
+            background-color: rgb(31 41 55); /* TODO */
+            border: .2rem solid currentColor;
+            border-radius: .5rem;
+            padding: .2rem;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 3.2rem;
+
+            &[data-copied=true] {
+                color: rgb(74 222 128);
+            }
+
+            svg {
+                fill: none;
+            }
+        }
+    }
     
     input[type="checkbox"] {
         width: 2rem;
@@ -103,9 +128,12 @@
     code {
         padding: 1rem;
         margin-bottom: $gap;
+        overflow-y: auto;
         span[data-line] {
             line-height: 1.5;
         }
         span[data-highlighted-chars] { }
     }
+
+
 }
