@@ -20,8 +20,8 @@ export default function ProjectCard() {
             <h2>Nextjs HJ Blog</h2>
             <p className='project-card-description'>
                 현재 블로그로 쓰이고 있는 프로젝트입니다.<br/>
-                "Nextjs 13" 버전을 중심으로 만든 "SSG" 기반 블로그입니다.<br/>
-                "MDX"로 포스트 작성 가능하며, 
+                Nextjs 13 버전을 중심으로 만든 SSG 기반 블로그입니다.<br/>
+                MDX로 포스트 작성 가능하며, 
                 스타일은 SASS로, 구조화된 scss 파일을 기반으로 유지보수가 간편하게 되어있음.
             </p>
             <div>
