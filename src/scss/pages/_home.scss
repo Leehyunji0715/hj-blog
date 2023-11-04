@@ -53,48 +53,13 @@
     }
 
     &__project {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(25rem, 1fr));
+        gap: 3rem;
         margin-top: 3rem;
 
-        &-item {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            padding: 4rem 2.5rem;
-            border-radius: 1rem;
-            background-color: var(--bg-secondary);
-
-            @media only screen and (max-width: $bp-medium) {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-
-            &:not(:last-child) {
-                margin-bottom: 2.5rem;
-            }
-            
-            &-img {
-                width: 35%;
-                object-fit: contain;
-
-                @media only screen and (max-width: $bp-medium) {
-                    width: 50%;
-                    height: 40%;
-                }
-            }
-
-            &-description {
-                text-align: left;
-                letter-spacing: 1px;
-                width: 60%;
-                padding: 1rem 0 1rem 1rem;
-
-                @media only screen and (max-width: $bp-medium) {
-                    width: 100%;
-                }
-            }
+        @media only screen and (max-width: $bp-smaller-large) {
+            grid-template-columns: repeat(1, minmax(25rem, 1fr));
         }
     }
 }
@@ -106,7 +71,7 @@
     justify-content: space-between;
     align-items: center;
 
-    @media only screen and (max-width: $bp-medium) {
+    @media only screen and (max-width: $bp-smaller-large) {
         flex-direction: column;
         justify-content: center;
         gap: 3rem; 
@@ -147,7 +112,7 @@
     max-height: 45rem;
     @include show-up-animation;
 
-    @media only screen and (max-width: $bp-medium) {
+    @media only screen and (max-width: $bp-smaller-large) {
         order: -1;
         width: 100vw;
         height: 50vw;

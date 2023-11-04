@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { NextJsIcon, ReactIcon, SassIcon, TailwindIcon, TypescriptIcon } from '@/components/icons';
 import Chip from '@/components/Chip';
 import SectionBox from '@/components/SectionBox';
+import ProjectCard from '@/components/ProjectCard';
 
 const skills = [
   { icon: <TypescriptIcon/>, text: 'Typescript', category: 'language' },
@@ -68,18 +69,9 @@ export default function Home() {
         </ul>
       </SectionBox>
       <SectionBox title='Projects' direction='center' className='home__project'>
-        <div className='home__project-item'>
-          <Image src='/logo.png' width={300} height={300} alt='blog image' className='home__project-item-img'/>
-          <div className='home__project-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt tortor vel ex pretium, sit amet vestibulum ligula sodales. Curabitur a sem ligula. Etiam ut convallis nulla. Donec quis condimentum urna. Cras at ultricies tortor, a commodo nibh. Proin ac mi gravida tellus gravida ullamcorper at et est.
-          </div>
-        </div>
-        <div className='home__project-item'>
-          <Image src='/logo.png' width={300} height={300} alt='blog image' className='home__project-item-img'/>
-          <div className='home__project-item-description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt tortor vel ex pretium, sit amet vestibulum ligula sodales. Curabitur a sem ligula. Etiam ut convallis nulla. Donec quis condimentum urna. Cras at ultricies tortor, a commodo nibh. Proin ac mi gravida tellus gravida ullamcorper at et est.
-          </div>
-        </div>
+        <ProjectCard/>
+        <ProjectCard/>
+        <ProjectCard/>
       </SectionBox>
     </div>
   )
