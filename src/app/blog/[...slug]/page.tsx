@@ -15,23 +15,29 @@ export async function generateStaticParams() {
 }   
 
 const ALL = 'all';
+const UNIT = 12; // 한 페이지에 보여질 포스트 개수
+
+const isInRange = (pageNo: number, i: number) => UNIT * (pageNo - 1) <= i && i < UNIT * pageNo;
 
 export default async function BlogPageByCategory({ params: {slug}}: Props) {
     const categories = Object.values(Category);
     const category = slug[0] as Category;
     const pageNo = Number(slug[1]);
-    // const posts = await getPosts(pageNo, category === 'all' ? undefined : category);
     const posts = await getPosts();
-    // const countInfo = await postCount();
-    const curCount = category === 'all' ? posts.length : posts.filter(p => p.category === category).length;
-        // countInfo.reduce((acc, cur) => acc + cur._count, 0) 
-        // : countInfo.find(info => info.category === category)?._count ?? 0;
+    let totalCount = category === ALL ? posts.length : 0;
+    const displayedPosts = category === ALL ? posts.filter((_, i) => isInRange(pageNo, i))
+        : posts.filter((p, i) => {
+            if (p.category !== category) return false;
+            totalCount++;
+            return p.category === category && isInRange(pageNo, i)
+        });
+    
     
     return <div className="blog">
         <CategoryChipList currentCategory={category} categories={categories}/>
         <div className="blog__post-list">
-            { posts.length ? <GridPostList posts={posts}/> : "No Post"}
+            { displayedPosts.length ? <GridPostList posts={displayedPosts}/> : "No Post"}
         </div>
-        <PostPaginator total={curCount}/>
+        <PostPaginator total={totalCount} itemsPerPage={UNIT}/>
     </div>;
 }
