@@ -13,17 +13,6 @@ export type Post = {
 
 export type PostData = Post & { content: string, next: Post | null, prev: Post | null };
 
-// export async function postCount() {
-//     return await prisma.post.groupBy({ by: 'category', _count: true})
-//     .catch(async (e) => {
-//         await prisma.$disconnect();
-//         process.exit(1);
-//     })
-//     .finally(async () => {
-//         await prisma.$disconnect();
-//     });
-// }
-
 export const getPosts = cache(async () => {
     const filePath = path.join(process.cwd(), 'src/data', 'posts.json');
     return fs.readFile(filePath, 'utf-8')
