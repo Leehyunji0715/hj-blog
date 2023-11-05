@@ -1,3 +1,7 @@
-import { $Enums } from "@prisma/client";
-
-export type Category = $Enums.Category | 'all';
+export enum Category {
+    ALL = 'all',
+    GENERAL = 'general',
+    DEV = 'dev',
+    STUDY = 'study',
+    PROJECT = 'project'
+}

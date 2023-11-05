@@ -1,8 +1,8 @@
-import { $Enums } from "@prisma/client";
+import { Category } from "@/model/Category";
 import { getCategoryColor } from "@/util/color";
 
 type Props = {
-    category: $Enums.Category;
+    category: Category;
 };
 
 export default function CategorySmallTag({ category }: Props) {

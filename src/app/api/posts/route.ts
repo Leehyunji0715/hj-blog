@@ -1,11 +1,11 @@
-import { getPosts } from "@/service/posts";
-import { $Enums } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
+import { Category } from "@/model/Category";
+import { getPosts } from "@/service/posts";
 
 export async function GET(req: NextRequest) {
-    const category = req.nextUrl.searchParams.get('category') as $Enums.Category;
+    const category = req.nextUrl.searchParams.get('category') as Category;
 
-    return getPosts(0, category)
+    return getPosts()
         .then(posts => NextResponse.json(posts, { status: 200 }))
         .catch(err => new Response(err, { status: 500 }));
 }

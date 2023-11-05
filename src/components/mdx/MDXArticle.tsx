@@ -8,6 +8,7 @@ import H3 from './H3';
 import P from './P';
 import Ul from './Ul';
 import Chip from '../Chip';
+import Pre from './Pre';
 
 
 type Props = {
@@ -24,6 +25,7 @@ export default function MDXArticle({code}: Props) {
                 h3: H3,
                 p: P,
                 ul: Ul,
+                pre: Pre,
                 // Image: Image,
                 Chip: Chip,
             }}

@@ -9,7 +9,7 @@
     border-radius: .5rem;
     overflow: hidden;
 
-    transition: all .2s;
+    transition: all $default-transition-time;
     transition-timing-function: cubic-bezier(.4,0,.2,1);
     
     &:hover {
@@ -63,6 +63,66 @@
                 display: flex;
                 align-items: center;
                 gap: .5rem;
+            }
+        }
+    }
+}
+
+.project-card {
+    height: inherit;
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: var(--bg-secondary);
+    flex-direction: column;
+    align-items: center;
+
+    @media only screen and (max-width: $bp-smaller-large) {
+        height: auto;
+        gap: 1rem;
+    }
+
+    h2 { text-align: center; }
+
+    &__img {
+        height: 12vw;
+        width: 100%;
+        object-fit: contain;
+
+        @media only screen and (max-width: $bp-smaller-large) {
+            height: 25vw;
+        }
+    }
+
+    &__information {
+        width: 100%;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    &__description {
+        width: 100%;
+        letter-spacing: 1px;
+    }
+
+    &__list {
+        display: flex;
+        gap: 1.5rem;
+
+        svg { width: 2.5rem; height: 2.5rem; }
+
+        a,
+        a:link,
+        a:visited {
+            color: var(--color-text);
+            text-decoration: none;
+            transition: all $default-transition-time;
+
+            &:hover {
+                color: $color-primary;
             }
         }
     }

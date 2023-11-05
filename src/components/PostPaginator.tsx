@@ -5,18 +5,18 @@ import { LeftIcon, RightIcon } from "./icons";
 import PaginatorItem from "./PaginatorItem";
 
 type Props = {
+    itemsPerPage: number;
     total: number;
 };
 
-const UNIT = 12;
 const _ = Array(3).fill([]); 
 
-export default function PostPaginator({ total }: Props) {
+export default function PostPaginator({ total, itemsPerPage }: Props) {
     const path = usePathname();
     const router = useRouter();
     const curPageNum = Number(useParams().slug[1]);
     const rangeMin = 1;
-    const rangeMax = Math.ceil(total / UNIT);
+    const rangeMax = Math.ceil(total / itemsPerPage);
     
     if (rangeMax === 0) { } 
     else if (Number.isNaN(curPageNum) || curPageNum < rangeMin || curPageNum > rangeMax) {

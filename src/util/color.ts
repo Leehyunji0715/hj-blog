@@ -1,14 +1,14 @@
-import { $Enums } from "@prisma/client";
+import { Category } from "@/model/Category";
 
-export function getCategoryColor(category: $Enums.Category) {
+export function getCategoryColor(category: string | Category) {
     switch(category) {
-        case $Enums.Category.GENERAL:
+        case Category.GENERAL:
             return 'yellow';
-        case $Enums.Category.STUDY:
+        case Category.STUDY:
             return 'blue';
-        case $Enums.Category.PROJECT:
+        case Category.PROJECT:
             return 'red';
         default:
-            return null;
+            return '';
     }
 }
