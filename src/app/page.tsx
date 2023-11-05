@@ -4,11 +4,12 @@ import { NextJsIcon, ReactIcon, SassIcon, TailwindIcon, TypescriptIcon } from '@
 import Chip from '@/components/Chip';
 import SectionBox from '@/components/SectionBox';
 import ProjectCard from '@/components/ProjectCard';
+import projects from '@/data/projects';
 
 const skills = [
   { icon: <TypescriptIcon/>, text: 'Typescript', category: 'language' },
   { icon: <ReactIcon/>, text: 'React', category: 'library' },
-  { icon: <NextJsIcon/>, text: 'Next', category: 'framework' },
+  { icon: <NextJsIcon/>, text: 'Nextjs', category: 'framework' },
   { icon: <SassIcon/>, text: 'Sass', category: 'css' },
   { icon: <TailwindIcon/>, text: 'tailwind', category: 'css' },
 ];
@@ -22,6 +23,7 @@ const certifications = [
   'SQLD',
   'PCCP (희망사항)'
 ];
+
 
 export default function Home() {
   return (
@@ -69,9 +71,7 @@ export default function Home() {
         </ul>
       </SectionBox>
       <SectionBox title='Projects' direction='center' className='home__project'>
-        <ProjectCard/>
-        <ProjectCard/>
-        <ProjectCard/>
+        {projects.map((project, i) => <ProjectCard key={i} {...project}/>)}
       </SectionBox>
     </div>
   )

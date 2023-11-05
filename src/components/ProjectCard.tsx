@@ -1,35 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
-import { GitHubIcon } from "./icons";
+import { GitHubIcon, LinkIcon } from "./icons";
+import { ProjectData } from "@/model/Project";
+import Chip from "./Chip";
 
-type Props = {
-    title: string;
-    description: string;
-    image: string;
-    teckStack: string;
-    link?: {
-        github: string;
-        deployed?: string;
-    }
-};
+type Props = ProjectData;
 
-export default function ProjectCard() {
+export default function ProjectCard({
+  title, description, image, teckStacks, link
+}: Props) {
     return <div className="project-card">
-        <Image src='/logo.png' width={300} height={200} alt='blog image' className='project-card-img'/>
-          <div className='project-card-information'>
-            <h2>Nextjs HJ Blog</h2>
-            <p className='project-card-description'>
-                현재 블로그로 쓰이고 있는 프로젝트입니다.<br/>
-                Nextjs 13 버전을 중심으로 만든 SSG 기반 블로그입니다.<br/>
-                MDX로 포스트 작성 가능하며, 
-                스타일은 SASS로, 구조화된 scss 파일을 기반으로 유지보수가 간편하게 되어있음.
-            </p>
-            <div>
-              NextJS, React, SASS 
-            </div>
-            <Link href={``} target='_blank'>
-              <GitHubIcon/>
-            </Link>
+        <Image src={image} width={300} height={200} alt={`image of ${title}`} className='project-card__img'/>
+          <div className='project-card__information'>
+            <h2>{title}</h2>
+            <p className='project-card__description'>{description}</p>
+            <div className="project-card__list">{teckStacks.map(item => <Chip key={item} text={item}/>)}</div>
+            {
+              link && <div className="project-card__list">
+                <Link href={link.github} target='_blank'><GitHubIcon/></Link>
+                {link.deployed && <Link href={link.deployed} target='_blank'><LinkIcon/></Link>}
+              </div>
+            }
         </div>
     </div>
 }

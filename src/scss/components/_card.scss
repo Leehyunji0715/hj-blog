@@ -9,7 +9,7 @@
     border-radius: .5rem;
     overflow: hidden;
 
-    transition: all .2s;
+    transition: all $default-transition-time;
     transition-timing-function: cubic-bezier(.4,0,.2,1);
     
     &:hover {
@@ -85,7 +85,7 @@
 
     h2 { text-align: center; }
 
-    &-img {
+    &__img {
         height: 12vw;
         width: 100%;
         object-fit: contain;
@@ -95,7 +95,7 @@
         }
     }
 
-    &-information {
+    &__information {
         width: 100%;
         text-align: left;
         display: flex;
@@ -103,9 +103,27 @@
         gap: 1.5rem;
     }
 
-    &-description {
+    &__description {
         width: 100%;
         letter-spacing: 1px;
-        // padding: 1rem 0 1rem 1rem;
+    }
+
+    &__list {
+        display: flex;
+        gap: 1.5rem;
+
+        svg { width: 2.5rem; height: 2.5rem; }
+
+        a,
+        a:link,
+        a:visited {
+            color: var(--color-text);
+            text-decoration: none;
+            transition: all $default-transition-time;
+
+            &:hover {
+                color: $color-primary;
+            }
+        }
     }
 }

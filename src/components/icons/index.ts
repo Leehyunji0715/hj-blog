@@ -13,9 +13,11 @@ import { LeftIcon } from "./LeftIcon";
 import { RightIcon } from "./RightIcon";
 import { EditIcon } from './EditIcon';
 import { PlusIcon } from './PlusIcon';
+import { LinkIcon } from './LinkIcon'
 
 
 export { GitHubIcon, JavascriptIcon, TypescriptIcon, ReactIcon, NextJsIcon, SassIcon, TailwindIcon };
 export { MoonIcon, SunIcon };
 export { MouseIcon, CalendarIcon, EditIcon, PlusIcon };
 export { LeftIcon, RightIcon };
+export { LinkIcon };
