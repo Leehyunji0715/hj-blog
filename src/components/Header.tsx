@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from 'next/navigation';
-import { GitHubIcon, PlusIcon } from "./icons";
+import { GitHubIcon } from "./icons";
 import ThemeSwitch from "./ThemeSwitch";
 
 const menu = [
@@ -12,7 +12,7 @@ const menu = [
     { label: <GitHubIcon/>, href: 'https://github.com/Leehyunji0715', props: { target: "_blank" } },
 ];
 
-function getQueryString(href: string) {
+function getURI(href: string) {
     if (href === '/blog') {
         return '/all/1';
     }
@@ -38,17 +38,8 @@ export default function Header() {
             </Link>
             <nav className="header__nav">
                 <ul className="header__nav-list">
-                    {/* {
-                        data?.user.role === $Enums.Role.ADMIN && (
-                        <Link key='/post/add' href='/post/add'>
-                            <li className={`${isSelectedMenu(pathname, '/post/add') && "header__nav-list-item--selected"}`}>
-                                <PlusIcon/>
-                            </li>
-                        </Link>
-                        )
-                    } */}
                     { menu.map(({href, label, props}, i) => (
-                        <Link key={i} href={`${href}${getQueryString(href)}`} {...props}>
+                        <Link key={i} href={`${href}${getURI(href)}`} {...props}>
                             <li className={`${isSelectedMenu(pathname, href) && "header__nav-list-item--selected"}`}>
                                 {label}
                             </li>
