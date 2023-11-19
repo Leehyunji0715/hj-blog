@@ -33,7 +33,11 @@
             object-fit: cover;
             object-position: center;
             border-radius: .5rem;
-            max-height: 50vh;
+            max-height: 45rem;
+
+            @media only screen and (max-width: $bp-large) {
+                max-height: 45vh;
+            }
         }
     }
 }
