@@ -1,16 +1,16 @@
 /* reference from timlrx/tailwind-nextjs-starter-blog */
 
 const siteMetadata = {
-    title: 'Welcome to Hyunji\'s Blog',
+    title: 'Hyunji\'s Blog',
     author: 'Hyunji Lee',
-    headerTitle: 'Welcome to Hyunji\'s Blog',
-    description: 'A blog created with Next.js',
+    headerTitle: 'Hyunji\'s Blog',
+    description: '반갑습니다! 이현지 블로그 입니다😊',
     language: 'ko-kr',
-    theme: 'system', // system, dark or light
+    theme: 'dark', // system, dark or light
     siteUrl: 'https://bearlee0715.com/',
     siteRepo: 'https://github.com/Leehyunji0715/hj-blog',
     siteLogo: '/static/images/logo.png',
-    // socialBanner: '/static/images/twitter-card.png',
+    socialBanner: '/static/images/logo.png',
     // mastodon: 'https://mastodon.social/@mastodonuser',
     // email: 'address@yoursite.com',
     // github: 'https://github.com',

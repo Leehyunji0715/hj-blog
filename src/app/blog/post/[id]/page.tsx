@@ -4,16 +4,27 @@ import remarkGfm from "remark-gfm";
 import rehypePrettyCode from 'rehype-pretty-code';
 import { bundleMDX } from 'mdx-bundler';
 import MDXArticle from "@/components/mdx/MDXArticle";
-import { getPosts, getPostContent } from "@/service/posts";
+import { getPosts, getPostContent, getPost } from "@/service/posts";
 import { getImageSrcFrom } from '@/util/image';
+import { genPageMetadata } from '@/util/seo';
 
 
 type Props = {
     params: { id: string }
 };
 
-export const dynamic = 'force-static';
+export async function generateMetadata({ params: { id } }: Props) {
+    const post = await getPost(id);
+    if (!post) return;
 
+    return genPageMetadata({
+        title: post.title,
+        description: post.description,
+        image: post.image
+    })
+}
+
+export const dynamic = 'force-static';
 export async function generateStaticParams() {
     const arr = await getPosts();
     if (!arr) return [];
@@ -39,8 +50,6 @@ export default async function BlogPostPage({ params: {id} }: Props) {
             return options;
         },
     });
-    // console.log(code);
-    // console.log("frontmatter", frontmatter);
 
     return <div className='post'>
         <header className='post__header'>

@@ -3,17 +3,38 @@ import { Inter } from 'next/font/google'
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ThemeProvider from '@/context/ThemeProvider';
+import siteMetadata from '@/data/siteMetadata';
 import '../scss/main.scss';
 
 const inter = Inter({ subsets: ['latin'], fallback: ['system-ui', 'arial'] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteMetadata.siteUrl),
   title: {
-    default: "이현지's 블로그",
-    template: "케이티의 블로그 | %s"
+    default: siteMetadata.title,
+    template: `%s | ${siteMetadata.title}`,
   },
-  description: '반갑습니다! 이현지 블로그 입니다😊',
-  icons: 'favicon.ico'
+  description: siteMetadata.description,
+  openGraph: {
+    title: siteMetadata.title,
+    description: siteMetadata.description,
+    url: './',
+    siteName: siteMetadata.title,
+    images: [siteMetadata.socialBanner],
+    locale: 'en_US',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  }
 }
 
 export type Theme = 'light' | 'dark';
@@ -24,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang={siteMetadata.language}>
       <body className={`${inter.className}`}>
           <ThemeProvider>
             <Header/>
