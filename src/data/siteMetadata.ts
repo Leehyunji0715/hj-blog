@@ -9,8 +9,8 @@ const siteMetadata = {
     theme: 'dark', // system, dark or light
     siteUrl: 'https://bearlee0715.com/',
     siteRepo: 'https://github.com/Leehyunji0715/hj-blog',
-    siteLogo: '/static/images/logo.png',
-    socialBanner: '/static/images/logo.png',
+    siteLogo: '/images/site/logo.png',
+    socialBanner: '/images/site/logo.png',
     // mastodon: 'https://mastodon.social/@mastodonuser',
     // email: 'address@yoursite.com',
     // github: 'https://github.com',

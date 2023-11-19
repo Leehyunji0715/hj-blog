@@ -20,7 +20,7 @@ export async function generateMetadata({ params: { id } }: Props) {
     return genPageMetadata({
         title: post.title,
         description: post.description,
-        image: post.image
+        image: `/images/posts/${post.image ?? 'default_post_img.jpg'}`
     })
 }
 
