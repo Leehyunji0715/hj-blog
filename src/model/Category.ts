@@ -3,5 +3,6 @@ export enum Category {
     GENERAL = 'general',
     DEV = 'dev',
     STUDY = 'study',
-    PROJECT = 'project'
+    PROJECT = 'project',
+    GITHUB_CLONE = 'github clone'
 }
