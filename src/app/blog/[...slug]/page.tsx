@@ -9,10 +9,7 @@ type Props = {
     params: { slug: string[] }
 };
 
-export async function generateMetadata({ params: { slug } }: Props) {
-    const category = slug[0];
-    return genPageMetadata({ title: `Blog (${category})` })
-}
+export const metadata = genPageMetadata({ title: 'Blog' });
 
 export const dynamic = 'force-static';
 export async function generateStaticParams() {
