@@ -57,7 +57,7 @@ export default async function BlogPostPage({ params: {id} }: Props) {
                 [{post.category}] - {post.title}
             </h1>
             <time>{new Date(post.date).toLocaleDateString()}</time>
-            <Image src={imgSrc} width={1100} height={1100} alt={`image of ${post.title}`}/>
+            <Image priority src={imgSrc} width={1100} height={1100} alt={`image of ${post.title}`}/>
         </header>
         <article>
             <MDXArticle code={code} />
