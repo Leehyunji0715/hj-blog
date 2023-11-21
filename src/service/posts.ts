@@ -9,6 +9,7 @@ export type Post = {
     category: string;
     path: string;
     image: string;
+    published: boolean;
 };
 
 export type PostData = Post & { content: string, next: Post | null, prev: Post | null };
@@ -17,6 +18,7 @@ export const getPosts = cache(async () => {
     const filePath = path.join(process.cwd(), 'src/data', 'posts.json');
     return fs.readFile(filePath, 'utf-8')
         .then<Post[]>(JSON.parse)
+        .then((posts) => posts.filter(p =>p.published))
         .then((posts) => posts.sort((a, b) => a.date > b.date ? -1 : 1));
 });
 
