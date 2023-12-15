@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "node ./scripts/postMetadata.js && next build",
+    "dev": "npm run metadata && next dev",
+    "build": "npm run metadata && next build",
     "start": "next start",
     "lint": "next lint",
-    "analyze": "cross-env ANALYZE=true next build"
+    "analyze": "cross-env ANALYZE=true next build",
+    "metadata": "node ./scripts/postMetadata.js"
   },
   "dependencies": {
     "@types/node": "20.4.8",
