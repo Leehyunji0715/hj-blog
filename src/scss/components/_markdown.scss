@@ -1,155 +1,164 @@
 .mdx {
-    $gap: 2rem;
+  $gap: 2rem;
 
-    color: var(--text-secondary);
-    font-size: $default-font-size;
-    margin: 0 3vw;
-    
-    strong {
-        color: $color-primary;
+  color: var(--text-secondary);
+  font-size: $default-font-size;
+  margin: 0 3vw;
+
+  strong {
+    color: $color-primary;
+  }
+
+  &-h1,
+  &-h2,
+  &-h3 {
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+  }
+
+  &-h1 {
+    font-size: $default-font-size + 1rem;
+    margin: 4rem 0 1.5rem 0;
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 1.5rem;
+  }
+
+  &-h2 {
+    font-size: $default-font-size + 0.5rem;
+    margin: 3rem 0 1rem 0;
+    &:first-child {
+      margin: 0;
     }
+  }
 
-    &-h1, &-h2, &-h3 {
-        color: var(--color-text);
-        display: flex;
-        align-items: center;
+  &-h3 {
+    font-size: $default-font-size + 0.2rem;
+    margin: 2rem 0 0.5rem 0rem;
+    &:first-child {
+      margin: 0;
     }
+  }
 
-    &-h1 {
-        font-size: $default-font-size + 1rem;
-        margin: 4rem 0 1.5rem 0;
-        border-bottom: 2px solid currentColor;
-        padding-bottom: 1.5rem;
-    }
-
-    &-h2 {
-        font-size: $default-font-size + .5rem;
-        margin: 3rem 0 1rem 0;
-        &:first-child { margin: 0 };
-    }
-
-    &-h3 {
-        font-size: $default-font-size + .2rem;
-        margin: 2rem 0 .5rem 0rem;
-        &:first-child { margin: 0 };
-    }
-
-    &-p {
-        margin-bottom: $gap;
-        line-height: 1.6em;
-
-        code {
-            font-weight: 1000;
-        }
-    }
-
-    ol { 
-        margin-left: 2rem; 
-
-        li:not(:last-child) {
-            margin-bottom: 1rem;
-        }
-    }
-
-    li > p { margin-bottom: 0; }
-
-    &-ul {
-        list-style: none;
-        li {
-            display: flex;
-            align-items: center;
-        }
-        
-        li:not(:last-child) {
-            margin-bottom: 1rem;
-        }
-    }
-
-    &-pre {
-        position: relative;
-        background-color: rgb(34, 39, 46); /* TODO */
-        
-        button {
-            color: $color-white;
-            background-color: rgb(31 41 55); /* TODO */
-            border: .2rem solid currentColor;
-            border-radius: .5rem;
-            padding: .2rem;
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            width: 3.2rem;
-
-            &[data-copied=true] {
-                color: rgb(74 222 128);
-            }
-
-            svg {
-                fill: none;
-            }
-        }
-    }
-    
-    input[type="checkbox"] {
-        width: 2rem;
-        height: 2rem;
-        accent-color: $color-primary;
-        margin-right: 1rem;
-    }
-
-    blockquote {
-        padding: 1rem 2rem;
-        border-left: 4px solid $color-primary;
-        margin-bottom: $gap;
-
-        p {
-            margin: 0;
-        }
-    }
-
-    a, a:link, a:visited {
-        color: $color-primary;
-        font-size: $default-font-size - 0.1rem;
-        font-weight: 600;
-        text-decoration: underline;
-        text-decoration-color: $color-primary;
-        text-underline-offset: 5px;
-        transition: all .1s;
-
-        &:hover {
-            color: darken($color-primary, 10%);
-        }
-    }
-
-    a.anchor-link {
-        opacity: 0.1;
-        color: var(--text-secondary) !important;
-        font-size: $default-font-size + 1rem;
-        text-decoration: none;
-        margin-right: 1rem;
-        transition: opacity .1s;
-
-        &:hover {
-            opacity: 1;
-        }
-    }
-
-    img {
-        width: 100%;
-        margin-bottom: $gap;
-        object-fit: cover;
-        max-height: 40rem;
-    }
+  &-p {
+    margin-bottom: $gap;
+    line-height: 1.6em;
 
     code {
-        padding: 1rem;
-        margin-bottom: $gap;
-        overflow-y: auto;
-        span[data-line] {
-            line-height: 1.5;
-        }
-        span[data-highlighted-chars] { }
+      font-weight: 1000;
+    }
+  }
+
+  ol {
+    margin-left: 2rem;
+
+    li:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  li > p {
+    margin-bottom: 0;
+  }
+
+  &-ul {
+    list-style: none;
+    li {
+      display: flex;
+      align-items: center;
     }
 
+    li:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
 
+  &-pre {
+    position: relative;
+    background-color: rgb(34, 39, 46); /* TODO */
+
+    button {
+      color: $color-white;
+      background-color: rgb(31 41 55); /* TODO */
+      border: 0.2rem solid currentColor;
+      border-radius: 0.5rem;
+      padding: 0.2rem;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 3.2rem;
+
+      &[data-copied='true'] {
+        color: rgb(74 222 128);
+      }
+
+      svg {
+        fill: none;
+      }
+    }
+  }
+
+  input[type='checkbox'] {
+    width: 2rem;
+    height: 2rem;
+    accent-color: $color-primary;
+    margin-right: 1rem;
+  }
+
+  blockquote {
+    padding: 1rem 2rem;
+    border-left: 4px solid $color-primary;
+    margin-bottom: $gap;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  a,
+  a:link,
+  a:visited {
+    color: $color-primary;
+    font-size: $default-font-size - 0.1rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: $color-primary;
+    text-underline-offset: 5px;
+    transition: all 0.1s;
+
+    &:hover {
+      color: darken($color-primary, 10%);
+    }
+  }
+
+  a.anchor-link {
+    opacity: 0.1;
+    color: var(--text-secondary) !important;
+    font-size: $default-font-size + 1rem;
+    text-decoration: none;
+    margin-right: 1rem;
+    transition: opacity 0.1s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  img {
+    width: 100%;
+    margin-bottom: $gap;
+    object-fit: contain;
+    max-height: 40rem;
+  }
+
+  code {
+    padding: 1rem;
+    margin-bottom: $gap;
+    overflow-y: auto;
+    span[data-line] {
+      line-height: 1.5;
+    }
+    span[data-highlighted-chars] {
+    }
+  }
 }
