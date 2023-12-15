@@ -2,11 +2,14 @@ const fs = require('fs')
 const path = require('path')
 const matter = require('gray-matter')
 
+let fileCount = 0
+const metaDataList = []
 const mdxDirectory = 'src/data/posts'
 const metaFile = 'posts.json'
-const metaFileDirectory = `src/data/${metaFile}`
-const metaDataList = []
-let fileCount = 0
+const metaFilePath = `src/data/${metaFile}`
+const countFilePath = `src/data/count.json`
+
+const postCount = {}
 
 // Execution
 generatePostMetaData()
@@ -19,7 +22,7 @@ function generatePostMetaData() {
     }
 
     files.forEach((file) => {
-      const properties = ['title', 'description', 'date', 'tags', 'published']
+      const properties = ['title', 'description', 'category', 'date', 'tags', 'published']
       const doesNotHave = []
 
       if (path.extname(file) === '.mdx') {
@@ -39,6 +42,10 @@ function generatePostMetaData() {
         if (doesNotHave.length) {
           console.error(`Error: '${file}' does not have property '${doesNotHave}'`)
         } else {
+          const category = data.category
+          if (!postCount[category]) postCount[category] = 0
+          postCount[category]++
+
           metaDataList.push({
             ...data,
             path: fileName,
@@ -49,12 +56,21 @@ function generatePostMetaData() {
 
     if (fileCount === metaDataList.length) {
       const jsonMetadata = JSON.stringify(metaDataList)
-      fs.writeFile(metaFileDirectory, jsonMetadata, (err) => {
+      fs.writeFile(metaFilePath, jsonMetadata, (err) => {
         if (err) {
           console.error('Error writing metadata file:', err)
           return
         }
-        console.log('Metadata file created successfully!')
+        console.log('Post Metadata file created successfully!')
+      })
+
+      const jsonPostCount = JSON.stringify(postCount)
+      fs.writeFile(countFilePath, jsonPostCount, (err) => {
+        if (err) {
+          console.error('Error writing count metadata file:', err)
+          return
+        }
+        console.log('Count Metadata file created successfully!')
       })
     } else {
       console.error(`Fail to write ${fileName}`)
