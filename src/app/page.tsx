@@ -5,6 +5,7 @@ import Chip from '@/components/Chip';
 import SectionBox from '@/components/SectionBox';
 import ProjectCard from '@/components/ProjectCard';
 import projects from '@/data/projects';
+import ProfileImage from '@/components/ProfileImage';
 
 const skills = [
   { icon: <TypescriptIcon />, text: 'Typescript', category: 'language' },
@@ -35,7 +36,7 @@ export default function Home() {
           <h3 className='mt-sm' >Enjoying new experience and learning</h3>
         </div>
         <div className='profile-img'>
-          <Image priority className='profile-img-main' src='/images/site/profile.svg' fill alt='profile image' />
+          <ProfileImage />
         </div>
       </section>
       <SectionBox title='Skills' className='home__skill'>
