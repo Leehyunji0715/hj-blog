@@ -1,5 +1,11 @@
 @mixin show-up-animation {
-    animation: show-up .7s ease-in-out;
-    animation-fill-mode: forwards;
+  animation: show-up 0.7s ease-in-out;
+  animation-fill-mode: forwards;
+  animation-duration: 1;
+
+  // 처음 로딩할 때, 애니메이션이 제대로 안되어서 추가해 봄
+  transition-duration: 1s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+  transition-iteration-count: infinite;
 }
-  
