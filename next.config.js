@@ -1,8 +1,23 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-    images: {
-        domains: ['images.unsplash.com'],
-    }
-}
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
 
-module.exports = nextConfig;
+/** @type {import('next').NextConfig} */
+module.exports = withBundleAnalyzer({
+  images: {
+    domains: ['images.unsplash.com'],
+  },
+  async headers() {
+    return [
+      {
+        source: '/',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-store',
+          },
+        ],
+      },
+    ]
+  },
+})
