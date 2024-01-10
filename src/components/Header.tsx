@@ -9,7 +9,7 @@ import ThemeSwitch from "./ThemeSwitch";
 const menu = [
     { label: 'Home', href: '/' },
     { label: 'Blog', href: '/blog' },
-    { label: <GitHubIcon/>, href: 'https://github.com/Leehyunji0715', props: { target: "_blank" } },
+    { label: <GitHubIcon />, href: 'https://github.com/Leehyunji0715', props: { target: "_blank" } },
 ];
 
 function getURI(href: string) {
@@ -34,19 +34,19 @@ export default function Header() {
     return (
         <header className="header">
             <Link href='/'>
-                <Image width={100} height={50} src='/images/site/logo.png' alt="logo image"/>
+                <Image priority width={100} height={50} src='/images/site/logo.png' alt="logo image" />
             </Link>
             <nav className="header__nav">
                 <ul className="header__nav-list">
-                    { menu.map(({href, label, props}, i) => (
+                    {menu.map(({ href, label, props }, i) => (
                         <Link key={i} href={`${href}${getURI(href)}`} {...props}>
                             <li className={`${isSelectedMenu(pathname, href) && "header__nav-list-item--selected"}`}>
                                 {label}
                             </li>
                         </Link>
-                    )) }
+                    ))}
                 </ul>
-                <ThemeSwitch/>
+                <ThemeSwitch />
             </nav>
         </header>
     )
