@@ -1,34 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a Next.js, Sass CSS blog project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+Referenced [`timlrx/tailwind-nextjs-starter-blog`](https://github.com/timlrx/tailwind-nextjs-starter-blog) for SEO
+
+실제 배포되어 사용되는 사이트 [Personal Blog](https://bearlee0715.com)
 
 ## Getting Started
 
-First, run the development server:
+### Install
+Sharp install is required for image optimization
+```bash
+npm i sharp
+```
+
+Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Build
+```bash
+npm run build
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 기술 스택
+Nextjs 13 (App Routing) 
+React
+Sass
+MDX
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+<!-- ### 배포
+NGINX
+AWS lightsail -->
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## 변경 가능한 부분
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+포스트 데이터: `data/posts/{file name}.mdx`, `data/posts.json`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+프로젝트 데이터: `data/projects.ts`
 
-## Deploy on Vercel
+카테고리 모델: `model/Category.ts`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+.env 파일은 건들 필요 없음
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## TODO
+[] 옵션 포스트댓글
+
+[] SEO

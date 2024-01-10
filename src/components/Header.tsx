@@ -34,7 +34,7 @@ export default function Header() {
     return (
         <header className="header">
             <Link href='/'>
-                <Image width={100} height={50} src='/logo.png' alt="logo image"/>
+                <Image width={100} height={50} src='/images/site/logo.png' alt="logo image"/>
             </Link>
             <nav className="header__nav">
                 <ul className="header__nav-list">

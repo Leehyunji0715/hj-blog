@@ -7,11 +7,11 @@ import ProjectCard from '@/components/ProjectCard';
 import projects from '@/data/projects';
 
 const skills = [
-  { icon: <TypescriptIcon/>, text: 'Typescript', category: 'language' },
-  { icon: <ReactIcon/>, text: 'React', category: 'library' },
-  { icon: <NextJsIcon/>, text: 'Nextjs', category: 'framework' },
-  { icon: <SassIcon/>, text: 'Sass', category: 'css' },
-  { icon: <TailwindIcon/>, text: 'tailwind', category: 'css' },
+  { icon: <TypescriptIcon />, text: 'Typescript', category: 'language' },
+  { icon: <ReactIcon />, text: 'React', category: 'library' },
+  { icon: <NextJsIcon />, text: 'Nextjs', category: 'framework' },
+  { icon: <SassIcon />, text: 'Sass', category: 'css' },
+  { icon: <TailwindIcon />, text: 'tailwind', category: 'css' },
 ];
 
 const careers = [
@@ -21,7 +21,7 @@ const careers = [
 
 const certifications = [
   'SQLD',
-  'PCCP (희망사항)'
+  /* 'PCCP (희망사항)'*/
 ];
 
 
@@ -30,20 +30,19 @@ export default function Home() {
     <div className='home d-flex flex-col'>
       <section className='section-profile'>
         <div className='profile-text'>
-          <h1>{`Hello, I'm Hyunji`}</h1>
+          <h1>Hello, {`I'm`} <span className='text-highlight'>Hyunji</span></h1>
           <h2 className='mt-md'>Frontend Developer</h2>
           <h3 className='mt-sm' >Enjoying new experience and learning</h3>
         </div>
         <div className='profile-img'>
-          <Image priority className='profile-img-bg' src='/profile_bg.svg' fill alt='profile background'/>
-          <Image priority className='profile-img-main' src='/sample_profile.png' fill alt='profile'/>
+          <Image priority className='profile-img-main' src='/images/site/profile.svg' fill alt='profile image' />
         </div>
       </section>
       <SectionBox title='Skills' className='home__skill'>
         <ul>
-          {skills.map(( {icon, text} ) => (
+          {skills.map(({ icon, text }) => (
             <li key={text}>
-              <Chip icon={icon} text={text}/>
+              <Chip icon={icon} text={text} />
             </li>
           ))}
         </ul>
@@ -52,7 +51,7 @@ export default function Home() {
         <ul>
           {certifications.map((certificate, i) => (
             <li key={i}>
-              <Chip text={certificate}/>
+              <Chip text={certificate} />
             </li>
           ))}
         </ul>
@@ -71,7 +70,7 @@ export default function Home() {
         </ul>
       </SectionBox>
       <SectionBox title='Projects' direction='center' className='home__project'>
-        {projects.map((project, i) => <ProjectCard key={i} {...project}/>)}
+        {projects.map((project, i) => <ProjectCard key={i} {...project} />)}
       </SectionBox>
     </div>
   )
