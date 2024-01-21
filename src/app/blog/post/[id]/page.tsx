@@ -35,6 +35,8 @@ export async function generateStaticParams() {
     }));
 }
 
+const LoadingText = () => <h2 className="text-center">Loading Comments...</h2>;
+
 export default async function BlogPostPage({ params: { id } }: Props) {
     const post = await getPostContent(id);
     if (!post) {
@@ -56,6 +58,7 @@ export default async function BlogPostPage({ params: { id } }: Props) {
         () => import("@/components/UtterancesComments"),
         {
             ssr: false,
+            loading: LoadingText
         }
     );
 
