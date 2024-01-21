@@ -1,3 +1,4 @@
+import * as nextDynamic from "next/dynamic";
 import Image from 'next/image';
 import { redirect } from "next/navigation";
 import remarkGfm from "remark-gfm";
@@ -34,15 +35,15 @@ export async function generateStaticParams() {
     }));
 }
 
-export default async function BlogPostPage({ params: {id} }: Props) {
+export default async function BlogPostPage({ params: { id } }: Props) {
     const post = await getPostContent(id);
     if (!post) {
         redirect('/not-found');
     }
-    
-    const {content} = post;
+
+    const { content } = post;
     const imgSrc = getImageSrcFrom(post);
-    const { code, frontmatter } = await bundleMDX({ 
+    const { code, frontmatter } = await bundleMDX({
         source: content /*post.content*/,
         mdxOptions(options, frontmatter) {
             options.remarkPlugins = [...(options.remarkPlugins ?? []), remarkGfm]
@@ -51,16 +52,26 @@ export default async function BlogPostPage({ params: {id} }: Props) {
         },
     });
 
-    return <div className='post'>
-        <header className='post__header'>
-            <h1>
-                [{post.category}] - {post.title}
-            </h1>
-            <time>{new Date(post.date).toLocaleDateString()}</time>
-            <Image priority src={imgSrc} width={1100} height={1100} alt={`image of ${post.title}`}/>
-        </header>
-        <article>
-            <MDXArticle code={code} />
-        </article>
-    </div>
+    const UtterancesComments = nextDynamic.default(
+        () => import("@/components/UtterancesComments"),
+        {
+            ssr: false,
+        }
+    );
+
+    return <>
+        <div className='post'>
+            <header className='post__header'>
+                <h1>
+                    [{post.category}] - {post.title}
+                </h1>
+                <time>{new Date(post.date).toLocaleDateString()}</time>
+                <Image priority src={imgSrc} width={1100} height={1100} alt={`image of ${post.title}`} />
+            </header>
+            <article>
+                <MDXArticle code={code} />
+            </article>
+        </div>
+        <UtterancesComments />
+    </>
 }
