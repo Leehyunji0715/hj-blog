@@ -1,6 +1,14 @@
 .mdx {
   $gap: 2rem;
 
+  & * {
+    font-family: inherit;
+  }
+
+  & > * {
+    margin-bottom: $gap;
+  }
+
   color: var(--text-secondary);
   font-size: $default-font-size;
   margin: 0 3vw;
@@ -25,7 +33,7 @@
   }
 
   &-h2 {
-    font-size: $default-font-size + 0.5rem;
+    font-size: $default-font-size + 0.75rem;
     margin: 3rem 0 1rem 0;
     &:first-child {
       margin: 0;
@@ -33,19 +41,17 @@
   }
 
   &-h3 {
-    font-size: $default-font-size + 0.2rem;
-    margin: 2rem 0 0.5rem 0rem;
+    font-size: $default-font-size + 0.3rem;
+    margin: 3rem 0 0.5rem 0rem;
     &:first-child {
       margin: 0;
     }
   }
 
   &-p {
-    margin-bottom: $gap;
     line-height: 1.6em;
-
-    code {
-      font-weight: 1000;
+    & > * {
+      margin-top: $gap/2;
     }
   }
 
@@ -108,7 +114,6 @@
   blockquote {
     padding: 1rem 2rem;
     border-left: 4px solid $color-primary;
-    margin-bottom: $gap;
 
     p {
       margin: 0;
@@ -146,19 +151,45 @@
 
   img {
     width: 100%;
-    margin-bottom: $gap;
     object-fit: contain;
     max-height: 40rem;
   }
 
   code {
+    counter-reset: line;
+    font-weight: 300;
     padding: 1rem;
-    margin-bottom: $gap;
     overflow-y: auto;
     span[data-line] {
       line-height: 1.5;
     }
+
+    span[data-highlighted-line] {
+      background-color: #c8c8ff1a;
+    }
+
     span[data-highlighted-chars] {
+    }
+  }
+
+  code[data-line-numbers] > [data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    width: 1rem;
+    margin-right: 2rem;
+    text-align: right;
+    color: gray;
+  }
+
+  &-p,
+  li {
+    code {
+      padding: 0 0.5rem;
+      font-weight: 500;
+      color: var(--text-highlight);
+      background-color: var(--bg-highlight);
+      border-radius: 0.25rem;
     }
   }
 }

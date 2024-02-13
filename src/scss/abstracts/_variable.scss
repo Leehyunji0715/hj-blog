@@ -1,8 +1,7 @@
 // COLORS
-$color-primary: #F27F1A;
+$color-primary: #f27f1a;
 $color-primary-light: light($color-primary, 10%);
 $color-primary-dark: darken($color-primary, 10%);
-
 
 $color-grey: #1f2028;
 $color-grey-light-1: #f7f7f7;
@@ -16,47 +15,50 @@ $color-white: #fff;
 $color-black: #000;
 
 :root {
-    --color-text: #{$color-black};
+  --color-text: #{$color-black};
 }
 
-[data-theme="light"] {
-    color: $color-black;
-    background-color: $color-white;
-    --color-text: #{$color-black};
-    --color-primary: #{$color-primary};
-    --color-red: #ff4545;
-    --color-blue: #36a3ff;
-    --color-yellow: #a08600;
-    --bg-primary: #{$color-white};
-    --bg-secondary: #f7f7f7;
-    --bg-inverse: #{$color-black};
-    --text-secondary: #535661;
-    --text-inverse: #{$color-white};
-    --border-secondary: #e6e9ee;
-}
-  
-[data-theme="dark"] {
-    color: $color-white;
-    background-color: $color-grey;
-    --color-text: #{$color-white};
-    --color-primary: #{$color-primary};
-    --color-blue: #36a3ff;
-    --color-red: #ff4545;
-    --color-yellow: #ffd644;
-    --bg-primary: #{$color-grey};
-    --bg-secondary: #2e3039;
-    --bg-inverse: #{$color-white};
-    --text-secondary: #a9adc1;
-    --text-inverse: #{$color-black};
-    --border-secondary: #4b4c53;
+[data-theme='light'] {
+  color: $color-black;
+  background-color: $color-white;
+  --color-text: #{$color-black};
+  --color-primary: #{$color-primary};
+  --color-red: #ff4545;
+  --color-blue: #36a3ff;
+  --color-yellow: #a08600;
+  --bg-primary: #{$color-white};
+  --bg-secondary: #f7f7f7;
+  --bg-inverse: #{$color-black};
+  --bg-highlight: #fdecc8;
+  --text-secondary: #535661;
+  --text-inverse: #{$color-white};
+  --text-highlight: #6d3606;
+  --border-secondary: #e6e9ee;
 }
 
+[data-theme='dark'] {
+  color: $color-white;
+  background-color: $color-grey;
+  --color-text: #{$color-white};
+  --color-primary: #{$color-primary};
+  --color-blue: #36a3ff;
+  --color-red: #ff4545;
+  --color-yellow: #ffd644;
+  --bg-primary: #{$color-grey};
+  --bg-secondary: #2e3039;
+  --bg-inverse: #{$color-white};
+  --bg-highlight: #915103;
+  --text-secondary: #a9adc1;
+  --text-inverse: #{$color-black};
+  --text-highlight: #f5d7b3;
+  --border-secondary: #4b4c53;
+}
 
 // FONT
 $default-font-size: 1.6rem;
 
 // TRANSITION
-$default-transition-time: .2s;
+$default-transition-time: 0.2s;
 
 // MEDIA QUERY BREAK POINT
 $bp-large: 60.9375em; // 975px;
