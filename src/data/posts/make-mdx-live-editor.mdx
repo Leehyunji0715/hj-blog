@@ -1,0 +1,355 @@
+---
+title: 'MDX Editor 만들기 - 1'
+description: '직접 mdx live editor를 만들어보자'
+date: '2024-2-13'
+category: 'MDX'
+tags: ['React', 'MDX', 'Editor']
+reference: [
+    'https://supersfel.tistory.com/356',
+    'https://junukim.dev/articles/Typescript_+_React_+_Rollup%EC%9C%BC%EB%A1%9C_%ED%92%80%EC%84%B8%ED%8A%B8_Component_Library%EB%A7%8C%EB%93%A4%EA%B8%B0/', 
+    'https://github.com/ReactTooltip/react-tooltip'
+]
+published: true
+---
+
+포스트를 작성하다보면, 실시간으로 내가 작성한 포스트가 어떻게 보일지 확인해보고 싶을 때가 있다.
+
+블로그를 개발할 당시, 포스트 데이터를 db에 따로 저장하기로 했었는데 (~현재는 아니다~) 
+특히나 이처럼 줄 글로 저장되는 데이터일 때, MDX Editor 같은 기능이 필요하다 생각했다.
+
+[mdx Editor만들기](https://supersfel.tistory.com/356) 블로그를 참고하여서, 한번 나만의 mdx 에디터를 react로 만들어보자 싶었다.
+
+
+
+# 컴포넌트만 어떻게 배포할까?
+우선 글 제목처럼, mdx-ditor 라는 컴포넌트를 딱 한 개만 만들어 배포해볼 것이다. 
+
+그리고 이것을 배포하기 위해 프로젝트를 세팅해야 했는데, 생각해보니...
+지금껏 나는 어플리케이션만 만들었고, 그거는 cra 이나 어쨌던 dev 서버를 켜서 하나의 루트 파일로 부터 확장해 나가면 되었다.
+
+하지만 현재, 컴포넌트 한개만 만드는데 도대체 처음에 프로젝트를 어떤식으로 세팅해야 하는가?가 문제였다.
+
+그러고보니 내가 쓰는 컴포넌트들만 어떻게 다운받을 수 있는거지? 
+그 많은 개발자들은 dev 서버를 키지 않고도, 궁예처럼 뚝딱뚝딱 만들어 낼 수 있는게 아닐텐데 말이다.
+
+그래! 우선 조사를 좀 해보자 하고 몇몇 블로그 글들을 참고해보았다. 
+꼼꼼히 잘 정리된 이 분 글 링크도 같이 남겨본다. [Typescript_React_Rollup](https://junukim.dev/articles/Typescript_+_React_+_Rollup%EC%9C%BC%EB%A1%9C_%ED%92%80%EC%84%B8%ED%8A%B8_Component_Library%EB%A7%8C%EB%93%A4%EA%B8%B0/)
+
+컴포넌트 개발에 대해 알아보니, 본인이 직접 혹은 `create-react-app` 으로 개발 환경을 세팅하고, 
+index.ts 파일에 배포하려는 컴포넌트들만 export 하고, cjs, esm 형식으로 번들링을 한다. 
+그리고 그 파일을 package.json에 명시하여, npm에 배포하는 형식이었다.
+
+
+# 프로젝트 세팅
+
+
+## 세팅에 참고한 프로젝트
+[react-tooltip](https://github.com/ReactTooltip/react-tooltip), 리액트의 툴팁 컴포넌트만 제공하는데, 스타가 무려 3.4k개인 프로젝트이다.
+이 오픈 소스 프로젝트를 좀 본받아, 공부도 좀 해볼겸 비슷하게 환경세팅을 해보겠다.
+
+
+## ESBuild + Rollup => Vite
+프로젝트를 살펴보니, dev시에는 esbuild를, 번들할때는 rollup을 사용하였다.
+근데, 각기 한다면 물론 세심한 설정을 할 수 있겠지만, 이 둘의 장점을 합친것이 vite라 생각을 했다.
+
+실제로도 개발 서버 구동 관련하여 다음과 같이 나와있고,
+> Vite pre-bundles dependencies using esbuild. 
+
+번들링 관련하여 다음과 같이 공식 사이트에 적혀있다.
+> Why Not Bundle with esbuild? ... In spite of esbuild being faster, Vite's adoption of Rollup's flexible plugin API and infrastructure heavily contributed to its success in the ecosystem.
+
+그래서 vite를 사용하여 번들링과 개발서버 세팅을 하기로 결정했다!
+![사진 1](/images/posts/make-mdx-live-editor/1.png)
+
+```bash
+node -v # version 18/20 이상인지 확인
+npm create vite@5 # 현재는 vite version 5
+# Ok to proceed?: y
+# Project Name: mdx-editor
+# Select a framework: React 선택 
+# Select a variant: 좀더 빠른 성능을 위해 Typescript + SWC 선택 해보았다.
+``` 
+그러면 기본적인 세팅이 완료된다. 추가적인 커스터마이징은 `vite.config.ts`파일을 통해 하면 된다.
+
+
+## Prettier
+먼저 코드의 포맷팅을 도와주는 Prettier를 세팅해보자
+```bash
+npm i -D prettier
+```
+
+그리고 Prettier의 세팅 파일이다. [react-prettier-setting](https://gist.github.com/karpolan/2c573b5767bc9b65db9936c7fad4daac) 을 참조했다 (완전 같진 않음).
+```json
+// .prettierrc.json
+{
+  "printWidth": 120,
+  "useTabs": false,
+  "tabWidth": 2,
+  "trailingComma": "none",
+  "semi": false,
+  "singleQuote": true,
+  "jsxSingleQuote": false,
+  "bracketSpacing": true,
+  "arrowParens": "always"
+}
+```
+스크립트에 prettier 세팅도 했다. 아래는 그 의미도 같이 간략하게 적었다.
+- src/ 안에 있는 모든 .ts, .tsx, .css 파일 대상
+- --config는 "./.prettierrc.json" 파일 참조
+- --wrtie 직접 포맷팅 수정해주세요
+
+```json
+"prettier": "prettier --config ./.prettierrc.json --write \"src/**/*{.ts,.tsx}\"",
+```
+
+개발할때 편의를 위해서 vscode 내 `prettier` 확장 플러그인을 다운받아, format on save 설정을 했다.
+그렇게 하면, 저장할때마다 자동으로 prettier 세팅 값에 맞게 자동 formatting이 된다.
+
+
+## ESLint
+Prettier의 짝꿍 ESLint도 이어서 세팅해보겠다. 
+일일이 직접 세팅하지 않고, 기본적으로 제공하는 콘솔 커맨드를 통해 설정해보았다.
+
+```bash
+npm init @eslint/config
+```
+
+Eslint에 prettier 적용할 수도 있긴 하지만, 현재 내 vscode 상에서 자동으로 prettier 포맷을 해주고 있기 떄문에, 
+굳이 prettier 관련 설정은 하지 않았다.
+
+standard한 규칙을 적용했으며, typescript를 사용한다고 했다.
+추가적으로 내가 따로 설정한 것은 `"rules"` 와  `"settings"` 이다.
+```json
+// .eslintrc.json
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["standard-with-typescript", "plugin:react/recommended"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "react/react-in-jsx-scope": "off" /* React 17부터는 react import를 항상 할 필요가 없음, https://dev.to/titungdup/you-no-longer-need-to-import-react-from-react-3pbj */,
+    "import/no-absolute-path": "off",
+    "@typescript-eslint/space-before-function-paren": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+      // Warning: React version not specified in eslint-plugin-react settings. => react 버전 명시
+    }
+  }
+}
+
+```
+
+## @testing-library
+
+# 구현 
+
+## 설계
+
+MDXEditor는 아래 이미지처럼 2개의 파일로 구성할 것이다.
+![설계 이미지](/images/posts/make-mdx-live-editor/4.png)
+
+
+## MDXEditor.tsx
+
+### MDXProvider
+컴파일을 할 때, MDX 내에서 사용되는 커스텀 컴포넌트가 무엇인지 알게 하기위해 먼저 컴포넌트를 등록시켜야 한다.
+이는 `MDXProvider` 를 사용하면된다. 리액트의 Provider처럼 Props로 전달하지 않아도, 감싼 컴포넌트 내에서는 해당 컴포넌트 정보가 모두 공유가 된다.
+
+`@mdx-js/react`를 설치한다.
+```bash
+npm i @mdx-js/react
+```
+
+### EditorProps 
+- components: 사용자의 커스텀 리액트 컴포넌트
+- defaultValue: 맨 처음 에디터에 넣어질 기본 값
+
+### 코드
+```jsx
+// MDXEditor.tsx
+import 'easymde/dist/easymde.min.css'
+import MDXEditorCore from './MDXEditorCore'
+import { MDXProvider } from '@mdx-js/react'
+
+interface EditorProps {
+  components?: any // Record<string, React.ReactNode>
+  defaultValue?: string
+}
+
+export default function MDXEditor({ defaultValue, components }: EditorProps): React.ReactNode {
+  return (
+    <MDXProvider components={components}>
+      <MDXEditorCore defaultValue={defaultValue} />
+    </MDXProvider>
+  )
+}
+```
+
+
+## MDXEditorCore.tsx
+MDXEditorCore 구현 메인
+1. mdx 텍스트 컴파일 모듈
+2. easy-markdown-editor 설치
+
+### MDX 컴파일
+`@mdx-js/mdx` 는 mdx 문자 값을 mdx -> js 값으로 컴파일 하고, 실행시키기 위해 설치하는 모듈이다.
+
+```bash
+npm i  @mdx-js/mdx
+```
+
+함수로는 `evaluate`와 `evaluateSync`가 있으며, 비동기냐 동기냐의 차이다. 나는 evaluateSync를 사용할 것이다.
+
+evaluate(Sync)는 실제 자바스크립트의 `eval함수를 사용`하므로, 사용자의 입력값이 `신뢰할만한가?` 그것을 꼭 고려해야한다. (공식 사이트曰)
+
+아래는 공식 문서에서 어떻게 함수를 사용하는지 나온 샘플 코드이다
+[링크](https://mdxjs.com/packages/mdx/#evaluatesyncfile-options)
+```typescript
+import {evaluate} from '@mdx-js/mdx'
+import * as runtime from 'react/jsx-runtime'
+
+console.log(await evaluate(file, runtime))
+```
+{/* [원리](https://mdxjs.com/packages/mdx/#architecture) */}
+
+### easy-markdown-editor 설치
+
+[easy-markdown-editor 깃헙 링크](https://github.com/Ionaru/easy-markdown-editor)
+```bash
+npm install easymde
+```
+
+Editor.tsx 생성.
+EasyMDE는 `리액트 컴포넌트가 아니며`, docs에서도 textarea 태그에 호출하는 형식으로 부른다.
+`my-text-area`를 생성/호출 `new EasyMDE()` 인스턴스에 등록을 했다.
+
+또 한번 만들어진 Editor는 또 생성되지 않게 하기 위하며 `ref`로 값을 체크했다.
+
+또한, 사용자로부터 입력받는 갑
+
+```jsx showLineNumbers
+// MDXEditorCore.tsx
+import { useEffect, useRef } from 'react'
+import EasyMDE from 'easymde'
+import 'easymde/dist/easymde.min.css'
+
+interface EditorCoreProps {
+  defaultValue?: string
+}
+
+export default function MDXEditorCore({ defaultValue }: EditorCoreProps): React.ReactNode {
+  const ref = useRef<EasyMDE>()
+
+  useEffect(() => {
+    const element = document.getElementById('my-text-area') ?? undefined
+    if (ref.current === undefined) {
+      ref.current = new EasyMDE({ 
+        element, 
+        initialValue: defaultValue, 
+        /* ... */ 
+      })
+    }
+  }, [])
+
+  return <textarea id="my-text-area" />
+}
+```
+
+아래처럼 easy-mde가 나오는 것을 확인할 수 있다.
+![작동하는 easymde](/images/posts/make-mdx-live-editor/3.png)
+
+### MDX 컴포넌트를 Preview에서 보게 하기
+
+1. mdx 를 'evaluateSync()'로 컴파일&실행하기 
+2. 프리뷰에서 볼 수 있도록 렌더링 시키기
+
+먼저 컴파일 부분을 보겠다. `evaluateSync`를 사용하여, MDX 문자열을 js로 컴파일하고, 실행한 것이다.
+- body: mdx 문자열
+- mdxComponents?: 사용자가 등록한 컴포넌트
+
+참고로, 공식 문서에 Editor 처럼 실시간 바뀌는 경우에 대해서는 `MDXContent({props})`처럼 함수로 호출하는게 더 빠르다고 나왔다.
+```jsx showLineNumbers
+export const generate = (body: string, mdxComponents?: any) => {
+  const { default: MDXContent } = evaluateSync(body, {
+    ...(runtime as Readonly<EvaluateOptions>)
+  }) // jsx element
+
+  // https://mdxjs.com/packages/mdx/#notes
+  // MDXContent({props}) 형식으로 직접 호출하는게 더 빠르다고 나옴
+  return MDXContent({ components: mdxComponents })
+}
+```
+
+다음은 프리뷰에서 볼 수 있도록 렌더링을 시키겠다.
+EasyMDE 인스턴스 생성시, preview를 세팅할 수 있다.
+
+1. `MDXProvider` 컨텍스트 데이터를 `useMDXComponents`를 사용해서 가지고 옴
+2. `createRoot`, `flushSync` 를 사용하여 클라이언트 렌더링 시킴 
+
+특히 2번의 경우에는, `renderToStaticMarkup`을 사용한 경우가 있지만
+[리액트 공식 문서](https://react.dev/reference/react-dom/server/renderToString#removing-rendertostring-from-the-client-code)에서
+다음과 같이 나와있다.
+> Importing react-dom/server on the client unnecessarily increases your bundle size and should be avoided. ...
+
+요약하면, 클라이언트에서 `react-dom/server` 사용하지 말라는 것이다.
+따라서 가이드에 따라 코드를 아래와 같이 변경했다. 참고로 `flushSync` 를 사용해야 타이핑 할때마다 동적으로 Preview가 바뀐다.
+
+
+```jsx showLineNumbers {3, 7-8, 14-36}
+export default function MDXEditorCore({ defaultValue }: EditorCoreProps): React.ReactNode {
+  const ref = useRef<EasyMDE>()
+  const mdxComponents = useMDXComponents()
+
+  useEffect(() => {
+    const element = document.getElementById('my-text-area') ?? undefined
+    const div = document.createElement('div')
+    const root = createRoot(div)
+
+    if (ref.current === undefined) {
+      ref.current = new EasyMDE({
+        element,
+        initialValue: defaultValue,
+        previewRender: (plainText) => {
+          try {
+            const ele = generate(plainText, mdxComponents)
+            flushSync(() => {
+              root.render(ele)
+            })
+            return div.innerHTML
+          } catch (err: any) {
+            if (typeof err === 'object') {
+              flushSync(() => {
+                root.render(
+                  <>
+                    <h1>{err?.name}</h1>
+                    <p>{err?.message}</p>
+                  </>
+                )
+              })
+              return div.innerHTML
+            }
+          }
+          return ''
+        }
+      })
+      EasyMDE.toggleSideBySide(ref.current)
+    }
+  }, [])
+
+  return <textarea id="my-text-area" />
+}
+
+```
+
+짠 App.tsx에서 호출하면 다음과 같이 잘 나온다!
+![MDX Editor 완성](/images/posts/make-mdx-live-editor/5.png)
+
+포스트가 길어졌기 때문에, 다음에 배포해보겠다.
