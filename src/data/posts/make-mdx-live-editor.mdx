@@ -1,8 +1,8 @@
 ---
-title: 'MDX Editor 만들기 - 1'
+title: 'MDX Editor 만들기 (1) - 제작'
 description: '직접 mdx live editor를 만들어보자'
 date: '2024-2-13'
-category: 'MDX'
+category: 'mini project'
 tags: ['React', 'MDX', 'Editor']
 reference: [
     'https://supersfel.tistory.com/356',
@@ -291,7 +291,7 @@ export const generate = (body: string, mdxComponents?: any) => {
 다음은 프리뷰에서 볼 수 있도록 렌더링을 시키겠다.
 EasyMDE 인스턴스 생성시, preview를 세팅할 수 있다.
 
-1. `MDXProvider` 컨텍스트 데이터를 `useMDXComponents`를 사용해서 가지고 옴
+1. MDXProvider 컨텍스트 데이터를 `useMDXComponents`를 사용해서 가지고 옴
 2. `createRoot`, `flushSync` 를 사용하여 클라이언트 렌더링 시킴 
 
 특히 2번의 경우에는, `renderToStaticMarkup`을 사용한 경우가 있지만
