@@ -1,53 +1,73 @@
 .d-none {
-    display: none;
+  display: none;
 }
 
-.w-25 { width: 25%; }
-.w-100 { width: 100%; }
+.w-25 {
+  width: 25%;
+}
+.w-100 {
+  width: 100%;
+}
 
 .h-25 {
-    height: 25%;
+  height: 25%;
 }
 
 .d-flex {
-    display: flex;
-} 
+  display: flex;
+}
 
 .flex-col {
-    flex-direction: column;
+  flex-direction: column;
 }
 
 .align-items-center {
-    align-items: center;
+  align-items: center;
 }
 
-.mt-sm { margin-top: .5rem; }
-.mt-md { margin-top: 1rem; }
+.mt-sm {
+  margin-top: 0.5rem;
+}
+.mt-md {
+  margin-top: 1rem;
+}
 
-.mb-sm { margin-bottom: .5rem; }
-.mb-md { margin-bottom: 1rem; }
-.mb-lg { margin-bottom: 2rem; }
+.mb-sm {
+  margin-bottom: 0.5rem;
+}
+.mb-md {
+  margin-bottom: 1rem;
+}
+.mb-lg {
+  margin-bottom: 2rem;
+}
 
-.ml-sm { margin-left: .5rem; }
+.ml-sm {
+  margin-left: 0.5rem;
+}
 
 .object-cover {
-    object-fit: cover;
+  object-fit: cover;
 }
 
 .object-contain {
-    object-fit: contain;
+  object-fit: contain;
 }
 
 .overflow-hidden {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .heading {
-    font-size: 2.3rem;
-    margin-bottom: 1.5rem;
+  font-size: 2.3rem;
+  margin-bottom: 1.5rem;
 }
 
 .heading-md {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.text-center {
+  text-align: center;
 }
