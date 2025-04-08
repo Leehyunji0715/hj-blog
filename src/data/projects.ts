@@ -11,7 +11,7 @@ const projects: ProjectData[] = [
         teckStacks: ["Nextjs", "React", "Sass"],
         link: {
             github: "https://github.com/Leehyunji0715/hj-blog",
-            deployed: "https://bearlee0715.com"
+            deployed: "https://www.bearlee0715.com"
         }
     }
 ];

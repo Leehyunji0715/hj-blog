@@ -2,7 +2,7 @@ This is a Next.js, Sass CSS blog project bootstrapped with [`create-next-app`](h
 
 Referenced [`timlrx/tailwind-nextjs-starter-blog`](https://github.com/timlrx/tailwind-nextjs-starter-blog) for SEO
 
-실제 배포되어 사용되는 사이트 [Personal Blog](https://bearlee0715.com)
+실제 배포되어 사용되는 사이트 [Personal Blog](https://www.bearlee0715.com)
 
 ## Getting Started
 
