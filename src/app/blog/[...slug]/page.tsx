@@ -12,7 +12,9 @@ type Props = {
 
 export const metadata = genPageMetadata({ title: 'Blog' })
 
-export const dynamic = 'force-static'
+// ISR configuration: revalidate every hour
+export const revalidate = 3600
+
 export async function generateStaticParams() {
   const count = await getPostCount()
   return [Category.ALL, ...Object.keys(count)].map((category) => [category, 1])
@@ -31,16 +33,17 @@ export default async function BlogPageByCategory({ params: { slug } }: Props) {
   const pageNo = Number(slug[1])
   const posts = await getPosts()
   let totalCount = category === ALL ? posts.length : 0
-  const displayedPosts =
-    category === ALL
-      ? posts.filter((_, i) => isInRange(pageNo, i))
-      : posts.filter((p, i) => {
-          const postCategory = trimAlphaNumeric(p.category)
-          const slugCategory = trimAlphaNumeric(category)
-          if (postCategory !== slugCategory) return false
-          totalCount++
-          return postCategory === slugCategory && isInRange(pageNo, i)
-        })
+  const displayedPosts = posts
+  // category === ALL || !category /** TODO: REMOVE */
+  //   ? posts.filter((_, i) => isInRange(pageNo, i))
+  //   : posts.filter((p, i) => {
+  //       console.log('##############3 properties', p.properties.category)
+  //       const postCategory = trimAlphaNumeric(p.properties.category)
+  //       const slugCategory = trimAlphaNumeric(category)
+  //       if (postCategory !== slugCategory) return false
+  //       totalCount++
+  //       return postCategory === slugCategory && isInRange(pageNo, i)
+  //     })
 
   return (
     <div className='blog'>

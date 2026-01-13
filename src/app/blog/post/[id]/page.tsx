@@ -25,7 +25,9 @@ export async function generateMetadata({ params: { id } }: Props) {
     })
 }
 
-export const dynamic = 'force-static';
+// ISR configuration: revalidate every hour
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
     const arr = await getPosts();
     if (!arr) return [];
